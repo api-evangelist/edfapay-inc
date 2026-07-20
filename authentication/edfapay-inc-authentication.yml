@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/edfapay-inc-revamp.json + https://docs.edfapay.com/docs/sandbox-environment
+docs: https://docs.edfapay.com/docs/sandbox-environment
+summary:
+  types:
+  - apiKey
+  - signature
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-API-KEY
+  description: >-
+    API Key passed in the X-API-KEY request header for the management/dashboard
+    API (revamp-api). Keys are scoped to a caller type (ADMIN, PARTNER, MERCHANT,
+    USER).
+  sources:
+  - openapi/edfapay-inc-revamp.json
+- name: signature-hash
+  type: signature
+  in: body
+  parameter: hash
+  description: >-
+    The payment-gateway (Checkout / Server-to-Server) API authenticates each
+    request with a per-request MD5 hash signature computed from the merchant
+    credentials. Merchants receive a client_key and password on onboarding; the
+    hash is MD5( reverse(payer_email) + password + reverse(first6+last4 of card
+    number) ), uppercased. Webhook payloads carry the same hash for
+    verification.
+  credentials:
+  - client_key
+  - password
+  sources:
+  - https://docs.edfapay.com/docs/sandbox-environment
+  - https://docs.edfapay.com/docs/production-environment-1
+notes: >-
+  Two distinct surfaces. (1) The management API (revamp-api.edfapay.com) uses an
+  X-API-KEY header. (2) The payment gateway (api.edfapay.com) uses signed
+  requests with a client_key/password-derived MD5 hash; there is no OAuth 2.0
+  flow published.
