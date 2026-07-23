@@ -1,0 +1,323 @@
+openapi: 3.0.3
+info:
+  title: Edfapay Payment Gateway Branch Management Role Management API
+  version: 1.0.0
+  description: API to initiate a payment with Edfapay.
+servers:
+- url: https://apidev.edfapay.com
+  description: Sandbox server
+tags:
+- name: Role Management
+  description: Role Management APIs
+paths:
+  /api/v1/roles/role/{roleId}:
+    get:
+      tags:
+      - Role Management
+      summary: Role Details
+      description: 'Get Role Details by RoleId, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: getRoleById
+      parameters:
+      - name: roleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+    put:
+      tags:
+      - Role Management
+      summary: Update ROLE
+      description: 'Update exist Role, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: editRole
+      parameters:
+      - name: roleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+    delete:
+      tags:
+      - Role Management
+      summary: Delete ROLE
+      description: 'Delete exist Role, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: deleteRole
+      parameters:
+      - name: roleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/roles/role:
+    post:
+      tags:
+      - Role Management
+      summary: Create ROLE
+      description: 'Create new Role, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: createRole
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/roles/batch-delete:
+    patch:
+      tags:
+      - Role Management
+      summary: Delete Multi Branches
+      description: 'Delete multiple Branches, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: batchDeleteBranches
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/roles/search:
+    get:
+      tags:
+      - Role Management
+      summary: Search Roles
+      description: 'Search & Retrieve Roles, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: searchRoless
+      parameters:
+      - name: pageProperties
+        in: query
+        description: Search Pageable
+        required: true
+        schema:
+          $ref: '#/components/schemas/SearchPageable'
+        example:
+          pageNumber: 0
+          pageSize: 10
+      - name: searchCriteria
+        in: query
+        description: Role Search Criteria
+        required: true
+        schema:
+          $ref: '#/components/schemas/RoleSearchCriteria'
+        example:
+          text: Role
+          active: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+components:
+  schemas:
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    SearchPageable:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
+          type: string
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    RoleCreateRequest:
+      type: object
+      properties:
+        roleName:
+          type: string
+        description:
+          type: string
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+    RoleSearchCriteria:
+      type: object
+      properties:
+        text:
+          type: string
+        createdTimeTo:
+          type: string
+          format: date
+        createdTimeFrom:
+          type: string
+          format: date
+    PageObject:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean

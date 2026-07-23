@@ -1,0 +1,414 @@
+openapi: 3.0.3
+info:
+  title: Edfapay Payment Gateway Branch Management Transaction Management API
+  version: 1.0.0
+  description: API to initiate a payment with Edfapay.
+servers:
+- url: https://apidev.edfapay.com
+  description: Sandbox server
+tags:
+- name: Transaction Management
+  description: Transaction Management APIs
+paths:
+  /api/v1/transactions/{id}/details:
+    get:
+      tags:
+      - Transaction Management
+      summary: Transaction Details
+      description: Get Transaction Details by TransactionId
+      operationId: getTransactionDetailsById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/transactions/receipt/{id}:
+    get:
+      tags:
+      - Transaction Management
+      summary: Transaction Details
+      description: Get Transaction Details by TransactionId
+      operationId: getTransactionReceiptById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/transactions/public/transaction-constants:
+    get:
+      tags:
+      - Transaction Management
+      summary: Transaction Coding
+      description: Get All Transaction Coding
+      operationId: getAllCoding
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/transactions/filterTransaction:
+    get:
+      tags:
+      - Transaction Management
+      summary: Search Transaction
+      description: Search & Retrieve Transaction
+      operationId: searchBranches
+      parameters:
+      - name: pageProperties
+        in: query
+        description: Search Pageable
+        required: true
+        schema:
+          $ref: '#/components/schemas/FinancialTransactionPage'
+        example:
+          pageNumber: 0
+          pageSize: 10
+      - name: searchCriteria
+        in: query
+        description: Transaction Search Criteria
+        required: true
+        schema:
+          $ref: '#/components/schemas/FinancialTransactionSearchCriteria'
+        example:
+          rrn: '235'
+          status: SUCCESS
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/transactions/exist:
+    get:
+      tags:
+      - Transaction Management
+      summary: Transaction Exist
+      description: Check If Transaction Exist by TransactionId
+      operationId: getTransaction
+      parameters:
+      - name: requestId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/transactions/dashboard/soft-pos-summary:
+    get:
+      tags:
+      - Transaction Management
+      summary: Transaction SoftPOS Summary
+      description: Return Transactions SoftPOS Summary
+      operationId: getSoftPosSummary
+      parameters:
+      - name: days
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/transactions/dashboard/soft-pos-summary/{terminalId}:
+    get:
+      tags:
+      - Transaction Management
+      summary: Transaction SoftPOS Summary By TerminalId
+      description: Return Transaction SoftPOS Summary By TerminalId
+      operationId: getSoftPosSummaryByTerminalId
+      parameters:
+      - name: days
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: terminalId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/transactions/dashboard/payment-gateway-summary:
+    get:
+      tags:
+      - Transaction Management
+      summary: Transaction Payment Gateway Summary
+      description: Return Transactions Payment Gateway Summary
+      operationId: getPaymentGatewaySummary
+      parameters:
+      - name: days
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+components:
+  schemas:
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    FinancialTransactionPage:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
+          type: string
+    FinancialTransactionSearchCriteria:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        channel:
+          type: string
+        amountFrom:
+          type: number
+          format: double
+        amountTo:
+          type: number
+          format: double
+        cardType:
+          type: string
+        status:
+          type: string
+        reconciliationStatus:
+          type: string
+        merchantId:
+          type: string
+        createdBy:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        startHour:
+          type: string
+        endHour:
+          type: string
+        id:
+          type: string
+        transactionType:
+          type: string
+        partnerId:
+          type: string
+        rrn:
+          type: string
+        mti:
+          type: string
+        cardNumber:
+          type: string
+        madaTerminalId:
+          type: string
+        transactionCreateDate:
+          type: string
+          format: date-time
+        cardSequenceNumber:
+          type: string
+        terminalId:
+          type: string
+          format: uuid
+        actionType:
+          type: string
+        trxReferenceId:
+          type: string
+          format: uuid
+        businessUnitHierarchies:
+          type: array
+          items:
+            type: string
+            format: uuid
+        appId:
+          type: string
+    PageObject:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean

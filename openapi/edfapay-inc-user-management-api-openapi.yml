@@ -1,0 +1,336 @@
+openapi: 3.0.3
+info:
+  title: Edfapay Payment Gateway Branch Management User Management API
+  version: 1.0.0
+  description: API to initiate a payment with Edfapay.
+servers:
+- url: https://apidev.edfapay.com
+  description: Sandbox server
+tags:
+- name: User Management
+  description: User Management APIs
+paths:
+  /api/v1/users/user:
+    put:
+      tags:
+      - User Management
+      summary: Update User
+      description: 'Update exist User, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: editUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/users/batch-delete:
+    patch:
+      tags:
+      - User Management
+      summary: Delete Multi Users
+      description: 'Delete multiple Users, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: batchDeleteUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/users/user/{userId}:
+    get:
+      tags:
+      - User Management
+      summary: User Details
+      description: 'Get User Details by UserId, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: getUserById
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+    delete:
+      tags:
+      - User Management
+      summary: 'Delete '
+      description: 'Delete exist User, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: deleteUser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/users/search:
+    get:
+      tags:
+      - User Management
+      summary: Search Users
+      description: 'Search & Retrieve Users, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH'
+      operationId: searchUsers
+      parameters:
+      - name: pageProperties
+        in: query
+        description: Search Pageable
+        required: true
+        schema:
+          $ref: '#/components/schemas/SearchPageable'
+        example:
+          pageNumber: 0
+          pageSize: 10
+      - name: searchCriteria
+        in: query
+        description: User Search Criteria
+        required: true
+        schema:
+          $ref: '#/components/schemas/UserSearchCriteria'
+        example:
+          text: User
+          active: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+components:
+  schemas:
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    SearchPageable:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
+          type: string
+    UpdateUserRequest:
+      required:
+      - id
+      - userType
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phoneNumber:
+          pattern: ^(\+?[0-9]{10,15}|)$
+          type: string
+        userType:
+          type: string
+          enum:
+          - SUPER_ADMIN
+          - PARTNER
+          - MERCHANT
+          - BRANCH
+          - TERMINAL
+          - SDK_USER
+          - USER
+        roles:
+          type: array
+          items:
+            type: string
+        permissions:
+          type: array
+          items:
+            type: string
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    UserSearchCriteria:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        phoneNumber:
+          type: string
+        createdTimeTo:
+          type: string
+          format: date
+        createdTimeFrom:
+          type: string
+          format: date
+        firstName:
+          type: string
+        lastName:
+          type: string
+        businessUnitId:
+          type: string
+          format: uuid
+        userType:
+          type: string
+        text:
+          type: string
+        owner:
+          type: boolean
+        businessUnitHierarchies:
+          type: array
+          items:
+            type: string
+            format: uuid
+    PageObject:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean

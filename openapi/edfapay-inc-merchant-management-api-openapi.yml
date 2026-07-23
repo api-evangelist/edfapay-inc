@@ -1,0 +1,397 @@
+openapi: 3.0.3
+info:
+  title: Edfapay Payment Gateway Branch Management Merchant Management API
+  version: 1.0.0
+  description: API to initiate a payment with Edfapay.
+servers:
+- url: https://apidev.edfapay.com
+  description: Sandbox server
+tags:
+- name: Merchant Management
+  description: Merchant Management APIs
+paths:
+  /api/v1/merchant:
+    put:
+      tags:
+      - Merchant Management
+      summary: Update Merchant
+      description: 'Update exist Merchant, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT'
+      operationId: editMerchant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMerchantRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+    post:
+      tags:
+      - Merchant Management
+      summary: Create Merchant
+      description: 'Create new Merchant, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT'
+      operationId: createMerchant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMerchantRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/merchant/batch-delete:
+    patch:
+      tags:
+      - Merchant Management
+      summary: Delete Multi Merchants
+      description: 'Delete multiple Merchants, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT'
+      operationId: batchDeleteMerchants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/merchant/{merchantId}:
+    get:
+      tags:
+      - Merchant Management
+      summary: Merchant Details
+      description: 'Get Merchant Details by MerchantId, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT'
+      operationId: getMerchantById
+      parameters:
+      - name: merchantId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+    delete:
+      tags:
+      - Merchant Management
+      summary: Delete Merchant
+      description: 'Delete exist Merchant, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT'
+      operationId: deleteMerchant
+      parameters:
+      - name: merchantId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/merchant/search:
+    get:
+      tags:
+      - Merchant Management
+      summary: Search Merchants
+      description: 'Search & Retrieve Merchants, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT'
+      operationId: searchMerchants
+      parameters:
+      - name: pageProperties
+        in: query
+        description: Search Pageable
+        required: true
+        schema:
+          $ref: '#/components/schemas/SearchPageable'
+        example:
+          pageNumber: 0
+          pageSize: 10
+      - name: searchCriteria
+        in: query
+        description: Merchant Search Criteria
+        required: true
+        schema:
+          $ref: '#/components/schemas/MerchantSearchCriteria'
+        example:
+          text: Merchant
+          active: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+components:
+  schemas:
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    MerchantSearchCriteria:
+      type: object
+      properties:
+        text:
+          type: string
+        userId:
+          type: string
+          format: uuid
+        cityId:
+          type: integer
+          format: int32
+        countryCode:
+          type: string
+        businessCategoryId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        nameAR:
+          type: string
+        emailAddress:
+          type: string
+        currencyCode:
+          type: string
+        registeredMobileNumber:
+          type: string
+        createdTimeTo:
+          type: string
+          format: date
+        createdTimeFrom:
+          type: string
+          format: date
+        active:
+          type: boolean
+        businessUnitIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+    SearchPageable:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
+          type: string
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    CreateMerchantRequest:
+      required:
+      - emailAddress
+      - name
+      - nameAR
+      - registeredMobileNumber
+      type: object
+      properties:
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          pattern: ^\+?[0-9]{10,15}$
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        parentBusinessUnitId:
+          type: string
+          format: uuid
+        businessCategoryId:
+          type: string
+          format: uuid
+        logo:
+          type: string
+          format: byte
+        currencyCode:
+          type: string
+        name:
+          type: string
+        nameAR:
+          type: string
+        active:
+          type: boolean
+    UpdateMerchantRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        nameAR:
+          type: string
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          type: string
+        businessCategoryId:
+          type: string
+          format: uuid
+        country:
+          type: string
+        city:
+          type: string
+        active:
+          type: boolean
+        logo:
+          type: string
+          format: byte
+        currencyCode:
+          type: string
+    PageObject:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean

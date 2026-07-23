@@ -1,0 +1,376 @@
+openapi: 3.0.3
+info:
+  title: Edfapay Payment Gateway Branch Management Partner Management API
+  version: 1.0.0
+  description: API to initiate a payment with Edfapay.
+servers:
+- url: https://apidev.edfapay.com
+  description: Sandbox server
+tags:
+- name: Partner Management
+  description: Partner Management APIs
+paths:
+  /api/v1/partner:
+    put:
+      tags:
+      - Partner Management
+      summary: Update Partner
+      description: 'Update exist Partner, ACCESS LEVEL: SUPER_ADMIN, PARTNER'
+      operationId: editPartner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePartnerRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+    post:
+      tags:
+      - Partner Management
+      summary: Create Partner
+      description: 'Create new Partner, ACCESS LEVEL: SUPER_ADMIN, PARTNER'
+      operationId: createPartner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePartnerRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/partner/batch-delete:
+    patch:
+      tags:
+      - Partner Management
+      summary: Delete Multi Partners
+      description: 'Delete multiple Partners, ACCESS LEVEL: SUPER_ADMIN, PARTNER'
+      operationId: batchDeletePartners
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/partner/{partnerId}:
+    get:
+      tags:
+      - Partner Management
+      summary: Partner Details
+      description: 'Get Partner Details by PartnerId, ACCESS LEVEL: SUPER_ADMIN, PARTNER'
+      operationId: getPartnerById
+      parameters:
+      - name: partnerId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+    delete:
+      tags:
+      - Partner Management
+      summary: Delete Partner
+      description: 'Delete exist Partner, ACCESS LEVEL: SUPER_ADMIN, PARTNER'
+      operationId: deletePartner
+      parameters:
+      - name: partnerId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+  /api/v1/partner/search:
+    get:
+      tags:
+      - Partner Management
+      summary: Search Partners
+      description: 'Search & Retrieve Partners, ACCESS LEVEL: SUPER_ADMIN, PARTNER'
+      operationId: searchPartners
+      parameters:
+      - name: pageProperties
+        in: query
+        description: Search Pageable
+        required: true
+        schema:
+          $ref: '#/components/schemas/SearchPageable'
+        example:
+          pageNumber: 0
+          pageSize: 10
+      - name: searchCriteria
+        in: query
+        description: Partner Search Criteria
+        required: true
+        schema:
+          $ref: '#/components/schemas/PartnerSearchCriteria'
+        example:
+          text: Partner
+          active: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageObject'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseObject'
+components:
+  schemas:
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    SearchPageable:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
+          type: string
+    PartnerSearchCriteria:
+      type: object
+      properties:
+        name:
+          type: string
+        nameAR:
+          type: string
+        address:
+          type: string
+        text:
+          type: string
+        active:
+          type: boolean
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          type: string
+        createdTimeTo:
+          type: string
+          format: date
+        createdTimeFrom:
+          type: string
+          format: date
+        businessUnitHierarchies:
+          type: array
+          items:
+            type: string
+            format: uuid
+    CreatePartnerRequest:
+      required:
+      - emailAddress
+      - name
+      - nameAR
+      - registeredMobileNumber
+      type: object
+      properties:
+        parentBusinessUnitId:
+          type: string
+          format: uuid
+        logo:
+          type: string
+          format: byte
+        name:
+          type: string
+        nameAR:
+          type: string
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          pattern: ^\+?[0-9]{10,15}$
+          type: string
+        address:
+          type: string
+        active:
+          type: boolean
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    UpdatePartnerRequest:
+      required:
+      - address
+      - emailAddress
+      - name
+      - nameAR
+      - registeredMobileNumber
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        logo:
+          type: string
+          format: byte
+        name:
+          type: string
+        nameAR:
+          type: string
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          pattern: ^\+?[0-9]{10,15}$
+          type: string
+        address:
+          type: string
+        active:
+          type: boolean
+    PageObject:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
