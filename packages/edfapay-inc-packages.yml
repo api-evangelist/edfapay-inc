@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: searched
+source: npm registry search + github.com/edfapay
+docs: https://edfapay.com/developers/
+packages:
+- name: edfapay-softpos-sdk-rn
+  registry: npm
+  url: https://www.npmjs.com/package/edfapay-softpos-sdk-rn
+  version: 1.0.7
+  language: javascript
+  platform: react-native
+  official: true
+  repository: https://github.com/edfapay/edfapay-plugin-react-native
+  description: >-
+    EdfaPay SoftPOS SDK for React Native — integrate EdfaPay SoftPOS (tap-to-pay
+    on device) into mobile applications.
+- name: react-native-edfapay-softpos-sdk
+  registry: npm
+  url: https://www.npmjs.com/package/react-native-edfapay-softpos-sdk
+  version: 1.0.9
+  language: javascript
+  platform: react-native
+  official: true
+  repository: https://github.com/edfapay/edfapay-plugin-react-native
+  description: >-
+    EdfaPay SoftPOS SDK for React Native (current package name for the
+    edfapay-plugin-react-native project).
+- name: edfa-pg-android-sdk
+  registry: github
+  url: https://github.com/edfapay/edfa-pg-android-sdk
+  language: kotlin
+  platform: android
+  official: true
+  description: EdfaPay Payment Gateway Android SDK.
+- name: edfa-pg-flutter-sdk-sample
+  registry: github
+  url: https://github.com/edfapay/edfa-pg-flutter-sdk-sample
+  language: dart
+  platform: flutter
+  official: true
+  description: Sample integration of the EdfaPay Payment Gateway Flutter SDK.
+- name: edfa-pg-ios-sdk-sample
+  registry: github
+  url: https://github.com/edfapay/edfa-pg-ios-sdk-sample
+  language: swift
+  platform: ios
+  official: true
+  description: Sample integration of the EdfaPay Payment Gateway iOS SDK.
+- name: edfapay
+  registry: npm
+  url: https://www.npmjs.com/package/edfapay
+  version: 0.0.7
+  language: javascript
+  official: false
+  repository: https://github.com/Kareem-3del/Edfapay
+  description: >-
+    Third-party (community) Node.js client for accepting payments and payouts
+    via EdfaPay. Not published by the edfapay GitHub organization.
+- name: edfapay-payment
+  registry: npm
+  url: https://www.npmjs.com/package/edfapay-payment
+  version: 0.0.31
+  language: javascript
+  official: false
+  repository: https://github.com/Kareem-3del/EdfaPay
+  description: >-
+    Third-party (community) library for generating EdfaPay payment URLs. Not
+    published by the edfapay GitHub organization.
+notes: >-
+  No first-party npm/PyPI/Maven server-side SDK is published; EdfaPay's official
+  distribution is mobile SoftPOS SDKs (Android/iOS/Flutter/React Native) on
+  github.com/edfapay. The two server-side npm packages are community-maintained
+  (official:false).

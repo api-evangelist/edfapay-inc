@@ -1,0 +1,38 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay for EdfaPay management API
+  version: 1.0.0
+  x-generated: '2026-07-19'
+  x-method: generated
+  x-source: openapi/edfapay-inc-revamp.json
+extends: ../openapi/edfapay-inc-revamp.json
+actions:
+- target: $.info
+  description: Annotate provider identity and production host for discovery.
+  update:
+    x-provider: EdfaPay, Inc.
+    x-documentation: https://docs.edfapay.com
+    x-production-host: https://api.edfapay.com
+    x-management-host: https://revamp-api.edfapay.com
+    x-region: GCC (Saudi Arabia)
+- target: $
+  description: Record the auth model captured during enrichment.
+  update:
+    x-authentication:
+      management-api: X-API-KEY header (ADMIN/PARTNER/MERCHANT/USER scoped)
+      payment-gateway: client_key/password MD5 hash signature
+      profile: authentication/edfapay-inc-authentication.yml
+- target: $
+  description: Cross-link enrichment artifacts.
+  update:
+    x-artifacts:
+      conventions: conventions/edfapay-inc-conventions.yml
+      error-catalog: errors/edfapay-inc-problem-types.yml
+      decline-codes: errors/edfapay-inc-decline-codes.yml
+      webhooks: asyncapi/edfapay-inc-webhooks.yml
+      data-model: data-model/edfapay-inc-data-model.yml
+      sandbox: sandbox/edfapay-inc-sandbox.yml
+- target: $.paths.*.*.responses
+  description: Note the shared ApiResponseObject envelope on all operations.
+  update:
+    x-response-envelope: '{ code, message, errorCode, data }'

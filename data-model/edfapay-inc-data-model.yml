@@ -1,0 +1,31 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/edfapay-inc-revamp.json
+docs: https://docs.edfapay.com/v2.0/reference/overview
+entities:
+- name: Partner
+  operations: [createPartner, editPartner, getPartnerById, deletePartner, searchPartners, batchDeletePartners]
+- name: Merchant
+  operations: [createMerchant, editMerchant, getMerchantById, deleteMerchant, searchMerchants, batchDeleteMerchants]
+- name: Branch
+  operations: [createBranch, editBranch, getBranchById, deleteBranch, searchBranches, batchDeleteBranches]
+- name: User
+  operations: [editUser, getUserById, deleteUser, searchUsers, batchDeleteUsers]
+- name: Role
+  operations: [createRole, editRole, getRoleById, deleteRole, searchRoless, batchDeleteBranches]
+- name: FinancialTransaction
+  operations: [getTransactionDetailsById, getTransactionReceiptById, getTransaction, searchBranches, getAllCoding]
+- name: Terminal
+  operations: [getSoftPosSummaryByTerminalId]
+relationships:
+- {from: Partner, type: has_many, to: Merchant, via: partnerId}
+- {from: Merchant, type: has_many, to: Branch, via: merchantId}
+- {from: Merchant, type: has_many, to: User, via: merchantId}
+- {from: User, type: belongs_to, to: Role, via: roleId}
+- {from: Branch, type: has_many, to: FinancialTransaction, via: branchId}
+- {from: Terminal, type: has_many, to: FinancialTransaction, via: terminalId}
+notes: >-
+  Derived from the management API (revamp-api). Relationships are inferred from
+  id-reference fields and the operation hierarchy (Partner -> Merchant -> Branch
+  -> Transaction) plus role-based access. Field-level id prefixes are not
+  published.

@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.edfapay.com/docs/test-cards
+docs:
+- https://docs.edfapay.com/docs/test-cards
+- https://docs.edfapay.com/docs/webhook-operation-types
+envelope_fields:
+  result: Immediate outcome of the action (SUCCESS, DECLINED, REDIRECT, ACCEPTED, ERROR, PENDING)
+  status: Transaction lifecycle state (3DS, REDIRECT, SETTLED, REFUND, DECLINED, PENDING)
+# Gateway response codes surfaced by the payment gateway. In the sandbox these
+# are deterministically triggered by the card expiry date used.
+decline_codes:
+- code: APPROVED
+  meaning: Transaction approved.
+  sandbox_trigger_expiry: 01/39
+  action: None — proceed.
+- code: DECLINED
+  meaning: Transaction declined by the acquirer/issuer.
+  sandbox_trigger_expiry: 05/39
+  action: Do not retry with the same card without customer action; ask for another method.
+- code: EXPIRED_CARD
+  meaning: The card is expired.
+  sandbox_trigger_expiry: 04/27
+  action: Ask the customer for a valid, unexpired card.
+- code: TIMED_OUT
+  meaning: The transaction timed out.
+  sandbox_trigger_expiry: 08/28
+  action: Retry; verify final state via a STATUS request before re-charging.
+- code: ACQUIRER_SYSTEM_ERROR
+  meaning: Acquirer-side system error.
+  sandbox_trigger_expiry: 01/37
+  action: Retry later; verify via STATUS.
+- code: UNSPECIFIED_FAILURE
+  meaning: Unspecified processing failure.
+  sandbox_trigger_expiry: 02/37
+  action: Retry; contact support if persistent.
+- code: UNKNOWN
+  meaning: Unknown/indeterminate outcome.
+  sandbox_trigger_expiry: 05/37
+  action: Verify transaction state via a STATUS request before any retry.
+cvv_response_codes:
+  visa_mastercard:
+  - {cvv_value: '100', code: MATCH, meaning: CVV is correct}
+  - {cvv_value: '101', code: NOT_PROCESSED, meaning: CVV check skipped}
+  - {cvv_value: '102', code: NO_MATCH, meaning: CVV incorrect}
+  amex:
+  - {cvv_value: '1000', code: MATCH, meaning: CVV is correct}
+  - {cvv_value: '1010', code: NOT_PROCESSED, meaning: CVV check skipped}
+  - {cvv_value: '1020', code: NO_MATCH, meaning: CVV incorrect}
+masked_to_buyer: >-
+  Not documented which codes are masked; buyers on the hosted checkout page see a
+  generic failure, while the merchant receives the specific result/status via
+  webhook and STATUS lookups.
+notes: >-
+  Complements errors/edfapay-inc-problem-types.yml. These are payment-gateway
+  outcome codes, distinct from the HTTP/API envelope errors of the management
+  API.

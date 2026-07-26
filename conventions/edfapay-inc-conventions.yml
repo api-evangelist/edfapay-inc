@@ -1,0 +1,46 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/edfapay-inc-revamp.json + https://docs.edfapay.com
+docs: https://docs.edfapay.com/docs/getting-started
+auth:
+  style: X-API-KEY header (management API) + client_key/password MD5 hash signature (payment gateway)
+  see: authentication/edfapay-inc-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key request header is documented. The docs advise CONSUMERS to
+    implement idempotent handling of webhooks (dedupe on trans_id) and to verify
+    outcomes via STATUS lookups, but the API itself does not accept an
+    idempotency key.
+pagination:
+  style: page-number
+  request_params: [pageNumber, pageSize, sortBy, sortDirection]
+  request_schema: SearchPageable
+  response_fields: [totalPages, totalElements, first, last, size, number, numberOfElements, content, empty]
+  response_schema: PageObject
+error_envelope:
+  shape: '{ code, message, errorCode, data }'
+  schema: ApiResponseObject
+  rfc9457: false
+  see: errors/edfapay-inc-problem-types.yml
+payment_result_model:
+  result: immediate action outcome
+  status: transaction lifecycle state
+  see: errors/edfapay-inc-decline-codes.yml
+versioning:
+  style: path + docs version
+  management_api: /api/v1 path prefix
+  docs_versions: [v2.0]
+  see: lifecycle/edfapay-inc-lifecycle.yml
+rate_limit_signaling:
+  documented: false
+request_id_tracing:
+  documented: false
+  note: Transactions are correlated by trans_id / order_id rather than a request-id header.
+field_conventions:
+  currency: ISO 4217 (e.g. SAR)
+  phone: E.164 (e.g. +9665XXXXXXXX)
+  country: ISO-2 (e.g. SA)
+  iban: KSA IBAN must start with SA
+metadata: not documented
+expansion_sparse_fields: not documented

@@ -1,8 +1,30 @@
 aid: edfapay-inc
 name: EdfaPay, Inc.
-description: EdfaPay, Inc. is a company surfaced as a portfolio company of 500-global and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  EdfaPay is a Saudi fintech and payment-technology company offering a
+  developer-friendly payment platform across the GCC region. Its products include
+  a hosted Checkout and Server-to-Server (S2S) payment gateway, SoftPOS
+  tap-to-pay technology that turns mobile devices into card readers, merchant
+  onboarding, payouts, e-invoicing, and white-label solutions for banks and
+  partners. The gateway supports Visa, Mastercard, MADA, Apple Pay and STC Pay
+  with 3D Secure, webhooks, refunds and recurring payments, on PCI-DSS certified
+  infrastructure. EdfaPay was added to the API Evangelist network as a portfolio
+  company of 500 Global and enriched from its public developer documentation,
+  OpenAPI definitions and SDKs.
 url: https://raw.githubusercontent.com/api-evangelist/edfapay-inc/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://files.readme.io/89700fae642aef272b5162ed82daf2f2ececcb418693c2307830e1a0e3f7fa2e-EdfaPay-Logo.svg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,10 +33,87 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Payments
+- Payment Gateway
+- Fintech
+- SoftPOS
+- Apple Pay
+- Saudi Arabia
+- Merchant Onboarding
+apis:
+- aid: edfapay-inc:edfapay-inc-branch-management-api
+  name: EdfaPay, Inc. Branch Management API
+  description: Branch Management APIs
+  humanURL: https://docs.edfapay.com/v2.0/reference/overview
+  baseURL: https://revamp-api.edfapay.com
+  tags:
+  - Branch Management
+  properties:
+  - type: OpenAPI
+    url: openapi/edfapay-inc-branch-management-api-openapi.yml
+- aid: edfapay-inc:edfapay-inc-merchant-management-api
+  name: EdfaPay, Inc. Merchant Management API
+  description: Merchant Management APIs
+  humanURL: https://docs.edfapay.com/v2.0/reference/overview
+  baseURL: https://revamp-api.edfapay.com
+  tags:
+  - Merchant Management
+  properties:
+  - type: OpenAPI
+    url: openapi/edfapay-inc-merchant-management-api-openapi.yml
+- aid: edfapay-inc:edfapay-inc-partner-management-api
+  name: EdfaPay, Inc. Partner Management API
+  description: Partner Management APIs
+  humanURL: https://docs.edfapay.com/v2.0/reference/overview
+  baseURL: https://revamp-api.edfapay.com
+  tags:
+  - Partner Management
+  properties:
+  - type: OpenAPI
+    url: openapi/edfapay-inc-partner-management-api-openapi.yml
+- aid: edfapay-inc:edfapay-inc-payment-api
+  name: EdfaPay, Inc. Payment API
+  description: The Payment API from EdfaPay, Inc. — 1 operation(s) for payment.
+  humanURL: https://docs.edfapay.com/v2.0/reference/overview
+  baseURL: https://revamp-api.edfapay.com
+  tags:
+  - Payment
+  properties:
+  - type: OpenAPI
+    url: openapi/edfapay-inc-payment-api-openapi.yml
+- aid: edfapay-inc:edfapay-inc-role-management-api
+  name: EdfaPay, Inc. Role Management API
+  description: Role Management APIs
+  humanURL: https://docs.edfapay.com/v2.0/reference/overview
+  baseURL: https://revamp-api.edfapay.com
+  tags:
+  - Role Management
+  properties:
+  - type: OpenAPI
+    url: openapi/edfapay-inc-role-management-api-openapi.yml
+- aid: edfapay-inc:edfapay-inc-transaction-management-api
+  name: EdfaPay, Inc. Transaction Management API
+  description: Transaction Management APIs
+  humanURL: https://docs.edfapay.com/v2.0/reference/overview
+  baseURL: https://revamp-api.edfapay.com
+  tags:
+  - Transaction Management
+  properties:
+  - type: OpenAPI
+    url: openapi/edfapay-inc-transaction-management-api-openapi.yml
+- aid: edfapay-inc:edfapay-inc-user-management-api
+  name: EdfaPay, Inc. User Management API
+  description: User Management APIs
+  humanURL: https://docs.edfapay.com/v2.0/reference/overview
+  baseURL: https://revamp-api.edfapay.com
+  tags:
+  - User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/edfapay-inc-user-management-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +122,68 @@ maintainers:
 common:
 - type: Website
   url: https://edfapay.com
+- type: DeveloperPortal
+  url: https://edfapay.com/developers/
+- type: Documentation
+  url: https://docs.edfapay.com
+- type: APIReference
+  url: https://docs.edfapay.com/v2.0/reference/overview
+- type: GettingStarted
+  url: https://docs.edfapay.com/docs/getting-started
+- type: Support
+  url: https://edfapay.com/new-technical/
+- type: Blog
+  url: https://edfapay.com/our-blog/
+- type: SignUp
+  url: https://app.edfapay.com/sign-up/
+- type: Login
+  url: https://app.edfapay.com/
+- type: TermsOfService
+  url: https://edfapay.com/terms_conditions/
+- type: PrivacyPolicy
+  url: https://edfapay.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/edfapay
+- type: Postman
+  url: https://documenter.getpostman.com/view/21813149/2s9Y5SX6Xs
+- type: SDKs
+  url: packages/edfapay-inc-packages.yml
+- type: Packages
+  url: packages/edfapay-inc-packages.yml
+- type: LLMsTxt
+  url: llms/edfapay-inc-llms.txt
+- type: MCPServer
+  url: mcp/edfapay-inc-mcp.yml
+- type: Authentication
+  url: authentication/edfapay-inc-authentication.yml
+- type: Conventions
+  url: conventions/edfapay-inc-conventions.yml
+- type: Conformance
+  url: conformance/edfapay-inc-conformance.yml
+- type: Compliance
+  url: conformance/edfapay-inc-conformance.yml
+- type: TrustCenter
+  url: security/edfapay-inc-trust-center.yml
+- type: DomainSecurity
+  url: security/edfapay-inc-domain-security.yml
+- type: Lifecycle
+  url: lifecycle/edfapay-inc-lifecycle.yml
+- type: Sandbox
+  url: sandbox/edfapay-inc-sandbox.yml
+- type: Components
+  url: components/edfapay-inc-components.yml
+- type: DataModel
+  url: data-model/edfapay-inc-data-model.yml
+- type: Webhooks
+  url: asyncapi/edfapay-inc-webhooks.yml
+- type: ErrorCatalog
+  url: errors/edfapay-inc-problem-types.yml
+- type: DeclineCodes
+  url: errors/edfapay-inc-decline-codes.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

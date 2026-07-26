@@ -1,0 +1,33 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/edfapay-inc-revamp.json
+format: custom-envelope
+docs: https://docs.edfapay.com/docs/apple-paytroubleshooting-error-codes
+envelope:
+  description: >-
+    The management API (revamp-api) wraps all responses in an ApiResponseObject.
+    This is not RFC 9457 problem+json.
+  fields:
+    code: integer HTTP-style status code
+    message: human-readable message
+    errorCode: string application error code
+    data: object payload (present on success)
+http_responses:
+- status: '200'
+  meaning: Success — payload in ApiResponseObject.data.
+- status: '400'
+  meaning: >-
+    Bad request / validation error. Declared on every operation in the
+    management API; details carried in message + errorCode.
+problem_types:
+- type: bad-request
+  http_status: 400
+  title: Bad Request
+  detail: >-
+    Request failed validation or referenced an invalid resource. Inspect
+    errorCode and message in the ApiResponseObject.
+notes: >-
+  The OpenAPI declares only 200 and 400 responses; 401 (missing/invalid
+  X-API-KEY) is enforced at the gateway but not enumerated in the spec. Payment
+  gateway (non-management) failures are conveyed via the result/status/errorCode
+  fields documented in errors/edfapay-inc-decline-codes.yml.

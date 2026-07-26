@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.edfapay.com/docs/getting-started + openapi/edfapay-inc-revamp.json
+docs: https://docs.edfapay.com/docs/getting-started
+standards:
+- id: pci-dss
+  conforms: true
+  evidence: >-
+    "PCI-DSS certified infrastructure ensuring every payment is processed
+    safely" (getting-started); Embedded/S2S docs require PCI-compliant handling
+    of cardholder data.
+- id: emv-3ds
+  conforms: true
+  evidence: >-
+    3D Secure (3DS) authentication is a first-class part of the payment and
+    webhook flows (REDIRECT/3DS operation and status types).
+- id: mada
+  conforms: true
+  evidence: >-
+    Supports MADA, the Saudi national debit network, in addition to Visa,
+    Mastercard, Apple Pay and STC Pay (payment-methods docs).
+- id: oauth2
+  conforms: false
+  evidence: No OAuth 2.0 flows; auth is X-API-KEY header + MD5 hash signature.
+- id: oidc
+  conforms: false
+  evidence: No OpenID Connect discovery or flows published.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    Errors use a custom { code, message, errorCode, data } envelope, not
+    application/problem+json.
+- id: pagination
+  conforms: true
+  evidence: >-
+    Page-number pagination via SearchPageable (pageNumber/pageSize/sortBy/
+    sortDirection) returning PageObject on management search endpoints.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency-key request header is documented.
+notes: >-
+  Payments/fintech conformance surface. PCI DSS and MADA are provider-stated;
+  cross-cutting web-API standards (OAuth/OIDC/RFC 9457) are not adopted.

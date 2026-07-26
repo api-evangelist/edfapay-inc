@@ -1,0 +1,31 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.edfapay.com + openapi/edfapay-inc-revamp.json
+docs: https://docs.edfapay.com/docs/go-live-checklist
+versioning:
+  scheme: path-and-docs
+  management_api_prefix: /api/v1
+  documentation_version: v2.0
+  notes: >-
+    The management API uses a /api/v1 path prefix. Documentation is served under
+    a v2.0 tree on docs.edfapay.com.
+deprecation:
+  policy_published: false
+  sunset_header: not-documented
+  deprecated_operations: []
+status_page:
+  url: null
+  found: false
+  note: No public status/uptime page was located.
+sla:
+  published: false
+support:
+  url: https://edfapay.com/new-technical/
+  channel: technical support portal
+go_live:
+  checklist: https://docs.edfapay.com/docs/go-live-checklist
+  requires: [merchant onboarding, production credentials, webhook URL config, domain whitelisting]
+notes: >-
+  No deprecation policy, Sunset/Deprecation header usage, SLA, or public status
+  page is published. Production readiness is governed by an onboarding + go-live
+  checklist rather than a formal versioning/deprecation policy.

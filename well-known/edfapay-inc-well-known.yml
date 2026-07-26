@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: probed
+source: live HTTPS probes of provider hosts
+summary: >-
+  No well-known documents are published. app.edfapay.com returns HTTP 200 for
+  every path (single-page-app catch-all serving index.html), so those 200s are
+  not real well-known files and are recorded as false-positive (spa).
+probes:
+- host: edfapay.com
+  results:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: api.edfapay.com
+  results:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/api-catalog, status: 401}
+  - {path: /.well-known/ai-plugin.json, status: 401}
+- host: docs.edfapay.com
+  results:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: app.edfapay.com
+  results:
+  - {path: /.well-known/security.txt, status: 200, note: spa-catch-all-html}
+  - {path: /.well-known/openid-configuration, status: 200, note: spa-catch-all-html}
+  - {path: /.well-known/oauth-authorization-server, status: 200, note: spa-catch-all-html}
+  - {path: /.well-known/api-catalog, status: 200, note: spa-catch-all-html}
+  - {path: /.well-known/ai-plugin.json, status: 200, note: spa-catch-all-html}
+files: []

@@ -1,0 +1,34 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.edfapay.com
+docs:
+- https://docs.edfapay.com/docs/checkout-integration-1
+- https://docs.edfapay.com/docs/overview
+- https://docs.edfapay.com/docs/embedded-apple-pay-integration
+families:
+- family: Hosted Checkout
+  kind: hosted-payment-page
+  description: >-
+    EdfaPay-hosted, redirect-based checkout page. The merchant backend creates a
+    payment session and receives a payment URL; the customer is redirected to
+    the secure EdfaPay page which collects card details and handles 3D Secure
+    automatically. Supports recurring payments.
+  docs: https://docs.edfapay.com/docs/checkout-integration-1
+- family: Embedded (Server-to-Server)
+  kind: embedded-integration
+  description: >-
+    Merchant-owned checkout UI that captures payment details and transmits them
+    server-to-server to the EdfaPay API with server-side hash authentication and
+    PCI-compliant handling. Operations: SALE, STATUS, CAPTURE, REFUND, RECURRING.
+  docs: https://docs.edfapay.com/docs/overview
+- family: Apple Pay (Embedded)
+  kind: wallet-button
+  description: >-
+    Embeddable Apple Pay button and configuration for accepting Apple Pay within
+    the merchant environment, with a dedicated configuration and go-live guide.
+  docs: https://docs.edfapay.com/docs/embedded-apple-pay-integration
+loaders: []
+notes: >-
+  These are hosted/embedded payment surfaces, distinct from the mobile SoftPOS
+  SDKs in packages/. No named JavaScript element/loader library (e.g. an
+  edfapay.js) is documented for the hosted checkout.

@@ -1,0 +1,50 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.edfapay.com/docs/sandbox-environment
+docs:
+- https://docs.edfapay.com/docs/sandbox-environment
+- https://docs.edfapay.com/docs/testing-guide
+- https://docs.edfapay.com/docs/test-cards
+environments:
+- name: sandbox
+  base_url: https://sandbox.edfapay.com/
+  transactions: simulated
+- name: production
+  base_url: https://api.edfapay.com/
+  transactions: live
+test_credentials:
+  # Published verbatim in EdfaPay sandbox docs — placeholder sandbox values, not live secrets.
+  client_key: sandbox-client-key
+  password: sandbox-secret-password
+  payer_email: testuser@edfapay.com
+hash_algorithm: >-
+  MD5( reverse(payer_email) + password + reverse(first6 + last4 of card number) ),
+  uppercased. Same algorithm in sandbox and production.
+test_cards:
+- brand: Mastercard
+  number: '5123450000000008'
+- brand: Mastercard
+  number: '5111111111111118'
+- brand: Visa
+  number: '4508750015741019'
+- brand: Visa
+  number: '4111111111111111'
+- brand: American Express
+  number: '345678901234564'
+- brand: American Express
+  number: '371449635398431'
+outcome_simulation:
+  mechanism: >-
+    Transaction outcome is driven by the card EXPIRY DATE used in the sandbox
+    (see errors/edfapay-inc-decline-codes.yml). CVV value drives the CVV-match
+    result.
+  default_success_card:
+    number: '5123450000000008'
+    exp_month: '01'
+    exp_year: '2039'
+    cvv: '100'
+notes: >-
+  No test clocks / time-simulation or fixture-trigger tooling is published;
+  outcomes are selected via card expiry date and CVV value. Webhooks can be
+  tested against your own endpoint or a third-party inspector (e.g.
+  Webhook.site). Never use live card data in the sandbox.

@@ -1,0 +1,26 @@
+{
+  "provider": "edfapay-inc",
+  "sources": [
+    "edfapay-inc-branch-management-api-openapi.yml",
+    "edfapay-inc-merchant-management-api-openapi.yml",
+    "edfapay-inc-partner-management-api-openapi.yml",
+    "edfapay-inc-payment-api-openapi.yml",
+    "edfapay-inc-role-management-api-openapi.yml",
+    "edfapay-inc-transaction-management-api-openapi.yml",
+    "edfapay-inc-user-management-api-openapi.yml"
+  ],
+  "outputs": [
+    "edfapay-inc-branch-management-api-openapi.yml",
+    "edfapay-inc-merchant-management-api-openapi.yml",
+    "edfapay-inc-partner-management-api-openapi.yml",
+    "edfapay-inc-payment-api-openapi.yml",
+    "edfapay-inc-role-management-api-openapi.yml",
+    "edfapay-inc-transaction-management-api-openapi.yml",
+    "edfapay-inc-user-management-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,63 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/edfapay-inc-revamp.json
+official_server: none-found
+notes: >-
+  No official hosted/remote MCP server was found for EdfaPay. The tools below are
+  a CANDIDATE surface derived from the management API operations
+  (revamp-api.edfapay.com), one tool per read/search operation that is safe for
+  agent use. Write/delete operations are intentionally excluded from the
+  candidate list.
+tools:
+- name: search_merchants
+  operationId: searchMerchants
+  method: GET
+  path: /api/v1/merchant/search
+  description: Search merchants with page-number pagination.
+- name: get_merchant
+  operationId: getMerchantById
+  method: GET
+  path: /api/v1/merchant/{merchantId}
+  description: Fetch a merchant by id.
+- name: search_partners
+  operationId: searchPartners
+  method: GET
+  path: /api/v1/partner/search
+  description: Search partners.
+- name: get_partner
+  operationId: getPartnerById
+  method: GET
+  path: /api/v1/partner/{partnerId}
+  description: Fetch a partner by id.
+- name: search_branches
+  operationId: searchBranches_1
+  method: GET
+  path: /api/v1/branches/search
+  description: Search branches.
+- name: search_transactions
+  operationId: searchBranches
+  method: GET
+  path: /api/v1/transactions/filterTransaction
+  description: Filter/search financial transactions.
+- name: get_transaction_details
+  operationId: getTransactionDetailsById
+  method: GET
+  path: /api/v1/transactions/{id}/details
+  description: Get full details for a transaction.
+- name: get_transaction_receipt
+  operationId: getTransactionReceiptById
+  method: GET
+  path: /api/v1/transactions/receipt/{id}
+  description: Get the receipt for a transaction.
+- name: get_softpos_summary
+  operationId: getSoftPosSummary
+  method: GET
+  path: /api/v1/transactions/dashboard/soft-pos-summary
+  description: SoftPOS dashboard summary.
+- name: get_payment_gateway_summary
+  operationId: getPaymentGatewaySummary
+  method: GET
+  path: /api/v1/transactions/dashboard/payment-gateway-summary
+  description: Payment gateway dashboard summary.
+auth: X-API-KEY header (see authentication/edfapay-inc-authentication.yml)

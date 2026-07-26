@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: searched
+type: Webhooks
+source: https://docs.edfapay.com/docs/webhook-information
+docs:
+- https://docs.edfapay.com/docs/webhook
+- https://docs.edfapay.com/docs/webhook-information
+- https://docs.edfapay.com/docs/webhook-operation-types
+- https://docs.edfapay.com/docs/webhook-payloads
+transport: HTTPS POST to a merchant-configured callback URL
+configuration: EdfaPay Dashboard -> Settings -> Callback URL (per environment)
+verification: >-
+  Each webhook payload carries a `hash` field (MD5 signature) to verify
+  authenticity; verify it before processing.
+delivery_semantics: >-
+  Asynchronous and not guaranteed final — always confirm outcome with a direct
+  STATUS API call. Implement idempotent handling (dedupe on trans_id).
+operation_types:
+- {type: SALE, description: A payment (sale) transaction is being processed.}
+- {type: 3DS, description: A 3D Secure authentication process is initiated or ongoing.}
+- {type: REDIRECT, description: Customer is redirected for an additional action (e.g. 3D Secure).}
+- {type: REFUND, description: A refund request has been processed.}
+- {type: RECURRING, description: A recurring payment initiated using stored credentials or a token.}
+result_values: [SUCCESS, DECLINED, REDIRECT, ACCEPTED, ERROR, PENDING]
+status_values: [3DS, REDIRECT, SETTLED, REFUND, DECLINED, PENDING]
+payload_fields:
+- {field: action, description: 'Transaction action, e.g. SALE.'}
+- {field: amount, description: Payment amount requested by the merchant.}
+- {field: card, description: Masked card number (e.g. 512345XXXXXX0008).}
+- {field: card_brand, description: 'Card network: VISA, MASTER, MADA, etc.'}
+- {field: card_expiration_date, description: Card expiry date.}
+- {field: currency, description: 'Transaction currency (e.g. SAR).'}
+- {field: hash, description: Hash signature for verifying webhook authenticity.}
+- {field: merchant_name, description: Merchant name.}
+- {field: order_id, description: Merchant-defined order ID.}
+- {field: trans_id, description: Unique transaction ID assigned by EdfaPay.}
+- {field: trans_date, description: Date and time of the transaction.}
+- {field: result, description: 'Outcome: SUCCESS, REDIRECT, PENDING, DECLINED.'}
+- {field: status, description: 'Lifecycle state: SETTLED, REDIRECT, DECLINED.'}
+- {field: redirect_url, description: 3D Secure redirect URL, present only when result is REDIRECT.}
+asyncapi_spec: none-published
+notes: >-
+  EdfaPay documents webhooks but publishes no AsyncAPI document; this is the
+  captured webhook catalog. No fabrication — event names and fields are taken
+  verbatim from the webhook docs.

@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/edfapay-inc-revamp.json + https://docs.edfapay.com
+note: >-
+  Agent Skills grounded in REAL EdfaPay operations. Management-API operationIds
+  are taken verbatim from openapi/edfapay-inc-revamp.json; payment-gateway
+  operations (SALE/STATUS/REFUND) are the documented Server-to-Server actions on
+  docs.edfapay.com. No operations were invented.
+skills:
+- id: reconcile-transactions
+  file: skills/edfapay-inc-reconcile-transactions.md
+  api: EdfaPay Management API
+  operations: [searchBranches, getTransactionDetailsById, getTransactionReceiptById, getPaymentGatewaySummary]
+- id: onboard-merchant
+  file: skills/edfapay-inc-onboard-merchant.md
+  api: EdfaPay Management API
+  operations: [createPartner, createMerchant, createBranch, createRole, searchMerchants]
+- id: accept-a-payment
+  file: skills/edfapay-inc-accept-a-payment.md
+  api: EdfaPay Payment Gateway (Server-to-Server)
+  operations: [SALE, STATUS, REFUND]
