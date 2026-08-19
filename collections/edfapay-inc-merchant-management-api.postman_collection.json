@@ -1,0 +1,994 @@
+{
+  "item": [
+    {
+      "id": "9e6f7c7e-12b7-4a79-85bc-1437eb946266",
+      "name": "Merchant Management",
+      "description": {
+        "content": "Merchant Management APIs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78b9a600-878b-4ffd-bb43-3b621a705404",
+          "name": "Update Merchant",
+          "request": {
+            "name": "Update Merchant",
+            "description": {
+              "content": "Update exist Merchant, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"nameAR\": \"<string>\",\n  \"emailAddress\": \"<string>\",\n  \"registeredMobileNumber\": \"<string>\",\n  \"businessCategoryId\": \"<uuid>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"logo\": \"<byte>\",\n  \"currencyCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a511eff-bb17-4d47-b1b7-8939a96410bc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"nameAR\": \"<string>\",\n  \"emailAddress\": \"<string>\",\n  \"registeredMobileNumber\": \"<string>\",\n  \"businessCategoryId\": \"<uuid>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"logo\": \"<byte>\",\n  \"currencyCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0715fec0-58b3-402a-972d-607af972f518",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"nameAR\": \"<string>\",\n  \"emailAddress\": \"<string>\",\n  \"registeredMobileNumber\": \"<string>\",\n  \"businessCategoryId\": \"<uuid>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"logo\": \"<byte>\",\n  \"currencyCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed743fc4-7f34-422b-be0b-057fa95822f9",
+          "name": "Create Merchant",
+          "request": {
+            "name": "Create Merchant",
+            "description": {
+              "content": "Create new Merchant, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailAddress\": \"<string>\",\n  \"name\": \"<string>\",\n  \"nameAR\": \"<string>\",\n  \"registeredMobileNumber\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"parentBusinessUnitId\": \"<uuid>\",\n  \"businessCategoryId\": \"<uuid>\",\n  \"logo\": \"<byte>\",\n  \"currencyCode\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "216f1d3b-0dd4-49b1-bd9d-d4ca6ebba334",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailAddress\": \"<string>\",\n  \"name\": \"<string>\",\n  \"nameAR\": \"<string>\",\n  \"registeredMobileNumber\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"parentBusinessUnitId\": \"<uuid>\",\n  \"businessCategoryId\": \"<uuid>\",\n  \"logo\": \"<byte>\",\n  \"currencyCode\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e4b92f7-8699-42e7-a967-42b7604a9ba7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailAddress\": \"<string>\",\n  \"name\": \"<string>\",\n  \"nameAR\": \"<string>\",\n  \"registeredMobileNumber\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"parentBusinessUnitId\": \"<uuid>\",\n  \"businessCategoryId\": \"<uuid>\",\n  \"logo\": \"<byte>\",\n  \"currencyCode\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b84aaaf3-4919-47fa-be45-198ca574de2b",
+          "name": "Delete Multi Merchants",
+          "request": {
+            "name": "Delete Multi Merchants",
+            "description": {
+              "content": "Delete multiple Merchants, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchant",
+                "batch-delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<uuid>\",\n  \"<uuid>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0f92d76-112f-438f-86b1-fa1786831b07",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    "batch-delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<uuid>\",\n  \"<uuid>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8509596c-0e2b-4025-81da-e8bd40a55915",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    "batch-delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<uuid>\",\n  \"<uuid>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1025d80a-999d-4cf9-8479-dee1222b3b2c",
+          "name": "Merchant Details",
+          "request": {
+            "name": "Merchant Details",
+            "description": {
+              "content": "Get Merchant Details by MerchantId, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchant",
+                ":merchantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "merchantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9107bae4-352a-455a-80f5-8f779d780b11",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    ":merchantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfe8bfec-bca7-4c39-8181-fb3fa1d6585c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    ":merchantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d903a15-c31e-44a6-bfed-ad5f2d87981c",
+          "name": "Delete Merchant",
+          "request": {
+            "name": "Delete Merchant",
+            "description": {
+              "content": "Delete exist Merchant, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchant",
+                ":merchantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "merchantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4d599cc-20ca-4a16-a494-8f69646116ee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    ":merchantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d148d8c9-de5e-4241-b35a-53340307fd3d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    ":merchantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be84b81e-3b1f-4582-95e9-0fc56bf4615f",
+          "name": "Search Merchants",
+          "request": {
+            "name": "Search Merchants",
+            "description": {
+              "content": "Search & Retrieve Merchants, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchant",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "<integer>",
+                  "description": "(Required) Search Pageable"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "<string>",
+                  "description": "(Required) Search Pageable"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "(Required) Search Pageable"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "(Required) Search Pageable"
+                },
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<uuid>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "cityId",
+                  "value": "<integer>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "businessCategoryId",
+                  "value": "<uuid>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "partnerId",
+                  "value": "<uuid>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "nameAR",
+                  "value": "<string>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "emailAddress",
+                  "value": "<string>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "currencyCode",
+                  "value": "<string>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "registeredMobileNumber",
+                  "value": "<string>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "createdTimeTo",
+                  "value": "<date>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "createdTimeFrom",
+                  "value": "<date>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<boolean>",
+                  "description": "(Required) Merchant Search Criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "businessUnitIds",
+                  "value": "[\"<uuid>\",\"<uuid>\"]",
+                  "description": "(Required) Merchant Search Criteria"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5faa7981-36b8-4e67-9146-a879488681b6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "text",
+                      "value": "Merchant"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 6458,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {\n    \"totalPages\": 5994,\n    \"totalElements\": 7034,\n    \"pageable\": {\n      \"paged\": true,\n      \"pageNumber\": 2689,\n      \"pageSize\": 8098,\n      \"offset\": 1730,\n      \"sort\": [\n        {\n          \"direction\": \"string\",\n          \"nullHandling\": \"string\",\n          \"ascending\": false,\n          \"property\": \"string\",\n          \"ignoreCase\": true\n        },\n        {\n          \"direction\": \"string\",\n          \"nullHandling\": \"string\",\n          \"ascending\": false,\n          \"property\": \"string\",\n          \"ignoreCase\": true\n        }\n      ],\n      \"unpaged\": false\n    },\n    \"first\": false,\n    \"last\": false,\n    \"size\": 110,\n    \"number\": 2500,\n    \"sort\": [\n      {\n        \"direction\": \"string\",\n        \"nullHandling\": \"string\",\n        \"ascending\": false,\n        \"property\": \"string\",\n        \"ignoreCase\": true\n      },\n      {\n        \"direction\": \"string\",\n        \"nullHandling\": \"string\",\n        \"ascending\": true,\n        \"property\": \"string\",\n        \"ignoreCase\": true\n      }\n    ],\n    \"numberOfElements\": 3841,\n    \"empty\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b387bd9d-8365-4787-ac81-b6c44aca9857",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "text",
+                      "value": "Merchant"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"code\": 5700,\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apidev.edfapay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ac53ca32-2729-4af9-8135-c9fd24ecd696",
+    "name": "Edfapay Payment Gateway Branch Management Merchant Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API to initiate a payment with Edfapay.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edfapay Payment Gateway Branch Management Transaction Management API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transaction Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/transactions/:id/details",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Transaction Details by TransactionId"
+        },
+        {
+          "info": {
+            "name": "Transaction Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/transactions/receipt/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Transaction Details by TransactionId"
+        },
+        {
+          "info": {
+            "name": "Transaction Coding",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/transactions/public/transaction-constants"
+          },
+          "docs": "Get All Transaction Coding"
+        },
+        {
+          "info": {
+            "name": "Search Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/transactions/filterTransaction",
+            "params": [
+              {
+                "name": "pageProperties",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Search Pageable"
+              },
+              {
+                "name": "searchCriteria",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Transaction Search Criteria"
+              }
+            ]
+          },
+          "docs": "Search & Retrieve Transaction"
+        },
+        {
+          "info": {
+            "name": "Transaction Exist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/transactions/exist",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Check If Transaction Exist by TransactionId"
+        },
+        {
+          "info": {
+            "name": "Transaction SoftPOS Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/transactions/dashboard/soft-pos-summary",
+            "params": [
+              {
+                "name": "days",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return Transactions SoftPOS Summary"
+        },
+        {
+          "info": {
+            "name": "Transaction SoftPOS Summary By TerminalId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/transactions/dashboard/soft-pos-summary/:terminalId",
+            "params": [
+              {
+                "name": "days",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "terminalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return Transaction SoftPOS Summary By TerminalId"
+        },
+        {
+          "info": {
+            "name": "Transaction Payment Gateway Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/transactions/dashboard/payment-gateway-summary",
+            "params": [
+              {
+                "name": "days",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return Transactions Payment Gateway Summary"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

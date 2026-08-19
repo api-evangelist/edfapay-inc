@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edfapay Payment Gateway Branch Management Role Management API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Role Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Role Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/roles/role/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Role Details by RoleId, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        },
+        {
+          "info": {
+            "name": "Update ROLE",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apidev.edfapay.com/api/v1/roles/role/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update exist Role, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        },
+        {
+          "info": {
+            "name": "Delete ROLE",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apidev.edfapay.com/api/v1/roles/role/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete exist Role, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        },
+        {
+          "info": {
+            "name": "Create ROLE",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apidev.edfapay.com/api/v1/roles/role",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new Role, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        },
+        {
+          "info": {
+            "name": "Delete Multi Branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apidev.edfapay.com/api/v1/roles/batch-delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete multiple Branches, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        },
+        {
+          "info": {
+            "name": "Search Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/roles/search",
+            "params": [
+              {
+                "name": "pageProperties",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Search Pageable"
+              },
+              {
+                "name": "searchCriteria",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Role Search Criteria"
+              }
+            ]
+          },
+          "docs": "Search & Retrieve Roles, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

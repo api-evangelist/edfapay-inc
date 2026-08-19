@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edfapay Payment Gateway Branch Management API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Branch Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apidev.edfapay.com/api/v1/branches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new Branch, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Update Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apidev.edfapay.com/api/v1/branches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update exist Branch, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Delete Multi Branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apidev.edfapay.com/api/v1/branches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete multiple Branches, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Branch Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/branches/:branchId",
+            "params": [
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Branch Details by BranchId, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Delete Branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apidev.edfapay.com/api/v1/branches/:branchId",
+            "params": [
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete exist Branch, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Search Branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/branches/search",
+            "params": [
+              {
+                "name": "pageProperties",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Search Pageable"
+              },
+              {
+                "name": "searchCriteria",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Branch Search Criteria"
+              }
+            ]
+          },
+          "docs": "Search & Retrieve Branches, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

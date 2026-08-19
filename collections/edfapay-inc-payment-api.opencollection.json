@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edfapay Gateway Branch Management Payment API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apidev.edfapay.com/payment/initiate",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "action",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "edfa_merchant_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "order_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "order_amount",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "order_currency",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "order_description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "req_token",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "payer_first_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "payer_last_name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "payer_address",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "payer_country",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "payer_city",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "payer_zip",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "payer_email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "payer_phone",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "payer_ip",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "term_url_3ds",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "auth",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "recurring_init",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "hash",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This API is used to initiate a payment transaction through Edfapay. Upon successful request, it returns a secure redirect_url to the hosted payment page, where the customer can choose from multiple available payment options. The exact set of payment methods shown depends on the merchant’s configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edfapay Payment Gateway Branch Management User Management API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apidev.edfapay.com/api/v1/users/user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update exist User, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        },
+        {
+          "info": {
+            "name": "Delete Multi Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apidev.edfapay.com/api/v1/users/batch-delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete multiple Users, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        },
+        {
+          "info": {
+            "name": "User Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/users/user/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get User Details by UserId, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        },
+        {
+          "info": {
+            "name": "Delete ",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apidev.edfapay.com/api/v1/users/user/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete exist User, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        },
+        {
+          "info": {
+            "name": "Search Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/users/search",
+            "params": [
+              {
+                "name": "pageProperties",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Search Pageable"
+              },
+              {
+                "name": "searchCriteria",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "User Search Criteria"
+              }
+            ]
+          },
+          "docs": "Search & Retrieve Users, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT, BRANCH"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

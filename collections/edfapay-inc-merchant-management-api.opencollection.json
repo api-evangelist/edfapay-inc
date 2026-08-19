@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edfapay Payment Gateway Branch Management Merchant Management API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merchant Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apidev.edfapay.com/api/v1/merchant",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new Merchant, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Update Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apidev.edfapay.com/api/v1/merchant",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update exist Merchant, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Delete Multi Merchants",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apidev.edfapay.com/api/v1/merchant/batch-delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete multiple Merchants, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Merchant Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/merchant/:merchantId",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Merchant Details by MerchantId, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Delete Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apidev.edfapay.com/api/v1/merchant/:merchantId",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete exist Merchant, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        },
+        {
+          "info": {
+            "name": "Search Merchants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/merchant/search",
+            "params": [
+              {
+                "name": "pageProperties",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Search Pageable"
+              },
+              {
+                "name": "searchCriteria",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Merchant Search Criteria"
+              }
+            ]
+          },
+          "docs": "Search & Retrieve Merchants, ACCESS LEVEL: SUPER_ADMIN, PARTNER, MERCHANT"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edfapay Payment Gateway Branch Management Partner Management API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Partner Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Partner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apidev.edfapay.com/api/v1/partner",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new Partner, ACCESS LEVEL: SUPER_ADMIN, PARTNER"
+        },
+        {
+          "info": {
+            "name": "Update Partner",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apidev.edfapay.com/api/v1/partner",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update exist Partner, ACCESS LEVEL: SUPER_ADMIN, PARTNER"
+        },
+        {
+          "info": {
+            "name": "Delete Multi Partners",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apidev.edfapay.com/api/v1/partner/batch-delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete multiple Partners, ACCESS LEVEL: SUPER_ADMIN, PARTNER"
+        },
+        {
+          "info": {
+            "name": "Partner Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/partner/:partnerId",
+            "params": [
+              {
+                "name": "partnerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Partner Details by PartnerId, ACCESS LEVEL: SUPER_ADMIN, PARTNER"
+        },
+        {
+          "info": {
+            "name": "Delete Partner",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apidev.edfapay.com/api/v1/partner/:partnerId",
+            "params": [
+              {
+                "name": "partnerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete exist Partner, ACCESS LEVEL: SUPER_ADMIN, PARTNER"
+        },
+        {
+          "info": {
+            "name": "Search Partners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apidev.edfapay.com/api/v1/partner/search",
+            "params": [
+              {
+                "name": "pageProperties",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Search Pageable"
+              },
+              {
+                "name": "searchCriteria",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Partner Search Criteria"
+              }
+            ]
+          },
+          "docs": "Search & Retrieve Partners, ACCESS LEVEL: SUPER_ADMIN, PARTNER"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

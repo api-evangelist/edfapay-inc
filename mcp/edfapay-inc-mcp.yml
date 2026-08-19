@@ -3,12 +3,9 @@ method: derived
 status: candidate
 source: openapi/edfapay-inc-revamp.json
 official_server: none-found
-notes: >-
-  No official hosted/remote MCP server was found for EdfaPay. The tools below are
-  a CANDIDATE surface derived from the management API operations
-  (revamp-api.edfapay.com), one tool per read/search operation that is safe for
-  agent use. Write/delete operations are intentionally excluded from the
-  candidate list.
+notes: No official hosted/remote MCP server was found for EdfaPay. The tools below are a CANDIDATE surface
+  derived from the management API operations (revamp-api.edfapay.com), one tool per read/search operation
+  that is safe for agent use. Write/delete operations are intentionally excluded from the candidate list.
 tools:
 - name: search_merchants
   operationId: searchMerchants
@@ -61,3 +58,9 @@ tools:
   path: /api/v1/transactions/dashboard/payment-gateway-summary
   description: Payment gateway dashboard summary.
 auth: X-API-KEY header (see authentication/edfapay-inc-authentication.yml)
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census
