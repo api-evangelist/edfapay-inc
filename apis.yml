@@ -94,6 +94,8 @@ apis:
   humanURL: https://docs.edfapay.com/v2.0/reference/overview
   baseURL: https://revamp-api.edfapay.com
   tags:
+  - Payments
+  tags_raw:
   - Payment
   properties:
   - type: OpenAPI
