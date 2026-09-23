@@ -1,11 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Edfapay Payment Gateway Branch Management API
-  version: 1.0.0
-  description: API to initiate a payment with Edfapay.
+  title: Edfapay API Docs Branch Management API
+  version: '1.0'
+  description: Branch Management APIs
 servers:
-- url: https://apidev.edfapay.com
-  description: Sandbox server
+- url: https://revamp-api.edfapay.com
+  description: Staging Server
+- url: http://localhost:8766
+  description: Local Server
+security:
+- apiKey: []
 tags:
 - name: Branch Management
   description: Branch Management APIs
@@ -183,6 +187,28 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
+    BranchCreateRequest:
+      required:
+      - countryCode
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+        nameAR:
+          type: string
+        address:
+          type: string
+        countryCode:
+          type: string
+        cityId:
+          type: integer
+          format: int32
+        active:
+          type: boolean
+        parentBusinessUnitId:
+          type: string
+          format: uuid
     PageableObject:
       type: object
       properties:
@@ -203,30 +229,62 @@ components:
             $ref: '#/components/schemas/SortObject'
         unpaged:
           type: boolean
-    ApiResponseObject:
+    PageObject:
       type: object
       properties:
-        code:
+        totalPages:
           type: integer
           format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
-    SortObject:
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+    BranchUpdateRequest:
+      required:
+      - countryCode
+      - id
+      - name
       type: object
       properties:
-        direction:
+        id:
           type: string
-        nullHandling:
+          format: uuid
+        name:
           type: string
-        ascending:
-          type: boolean
-        property:
+        nameAR:
           type: string
-        ignoreCase:
+        address:
+          type: string
+        countryCode:
+          type: string
+        cityId:
+          type: integer
+          format: int32
+        active:
           type: boolean
     SearchPageable:
       type: object
@@ -268,6 +326,19 @@ components:
           items:
             type: string
             format: uuid
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
     ApiResponsePageObject:
       type: object
       properties:
@@ -280,82 +351,21 @@ components:
           type: string
         data:
           $ref: '#/components/schemas/PageObject'
-    BranchCreateRequest:
-      required:
-      - countryCode
-      - name
+    ApiResponseObject:
       type: object
       properties:
-        name:
-          type: string
-        nameAR:
-          type: string
-        address:
-          type: string
-        countryCode:
-          type: string
-        cityId:
+        code:
           type: integer
           format: int32
-        active:
-          type: boolean
-        parentBusinessUnitId:
+        message:
           type: string
-          format: uuid
-    BranchUpdateRequest:
-      required:
-      - countryCode
-      - id
-      - name
-      type: object
-      properties:
-        id:
+        errorCode:
           type: string
-          format: uuid
-        name:
-          type: string
-        nameAR:
-          type: string
-        address:
-          type: string
-        countryCode:
-          type: string
-        cityId:
-          type: integer
-          format: int32
-        active:
-          type: boolean
-    PageObject:
-      type: object
-      properties:
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            type: object
-        number:
-          type: integer
-          format: int32
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        numberOfElements:
-          type: integer
-          format: int32
-        empty:
-          type: boolean
+        data:
+          type: object
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: API Key for accessing the endpoints from types (ADMIN, PARTNER, MERCHANT, USER)
+      name: X-API-KEY
+      in: header

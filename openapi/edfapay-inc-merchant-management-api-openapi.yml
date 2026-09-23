@@ -1,11 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Edfapay Payment Gateway Branch Management Merchant Management API
-  version: 1.0.0
-  description: API to initiate a payment with Edfapay.
+  title: Edfapay API Docs Merchant Management API
+  version: '1.0'
+  description: Merchant Management APIs
 servers:
-- url: https://apidev.edfapay.com
-  description: Sandbox server
+- url: https://revamp-api.edfapay.com
+  description: Staging Server
+- url: http://localhost:8766
+  description: Local Server
+security:
+- apiKey: []
 tags:
 - name: Merchant Management
   description: Merchant Management APIs
@@ -204,18 +208,84 @@ components:
             $ref: '#/components/schemas/SortObject'
         unpaged:
           type: boolean
-    ApiResponseObject:
+    PageObject:
       type: object
       properties:
-        code:
+        totalPages:
           type: integer
           format: int32
-        message:
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+    SearchPageable:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
           type: string
-        errorCode:
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
           type: string
-        data:
-          type: object
+    UpdateMerchantRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        nameAR:
+          type: string
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          type: string
+        businessCategoryId:
+          type: string
+          format: uuid
+        country:
+          type: string
+        city:
+          type: string
+        active:
+          type: boolean
+        logo:
+          type: string
+          format: byte
+        currencyCode:
+          type: string
     SortObject:
       type: object
       properties:
@@ -228,6 +298,40 @@ components:
         property:
           type: string
         ignoreCase:
+          type: boolean
+    CreateMerchantRequest:
+      required:
+      - emailAddress
+      - name
+      - nameAR
+      - registeredMobileNumber
+      type: object
+      properties:
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          pattern: ^\+?[0-9]{10,15}$
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        parentBusinessUnitId:
+          type: string
+          format: uuid
+        businessCategoryId:
+          type: string
+          format: uuid
+        logo:
+          type: string
+          format: byte
+        currencyCode:
+          type: string
+        name:
+          type: string
+        nameAR:
+          type: string
+        active:
           type: boolean
     MerchantSearchCriteria:
       type: object
@@ -271,22 +375,6 @@ components:
           items:
             type: string
             format: uuid
-    SearchPageable:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          format: int32
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        pageSize:
-          type: integer
-          format: int32
-        sortBy:
-          type: string
     ApiResponsePageObject:
       type: object
       properties:
@@ -299,99 +387,21 @@ components:
           type: string
         data:
           $ref: '#/components/schemas/PageObject'
-    CreateMerchantRequest:
-      required:
-      - emailAddress
-      - name
-      - nameAR
-      - registeredMobileNumber
+    ApiResponseObject:
       type: object
       properties:
-        emailAddress:
-          type: string
-        registeredMobileNumber:
-          pattern: ^\+?[0-9]{10,15}$
-          type: string
-        country:
-          type: string
-        city:
-          type: string
-        parentBusinessUnitId:
-          type: string
-          format: uuid
-        businessCategoryId:
-          type: string
-          format: uuid
-        logo:
-          type: string
-          format: byte
-        currencyCode:
-          type: string
-        name:
-          type: string
-        nameAR:
-          type: string
-        active:
-          type: boolean
-    UpdateMerchantRequest:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        nameAR:
-          type: string
-        emailAddress:
-          type: string
-        registeredMobileNumber:
-          type: string
-        businessCategoryId:
-          type: string
-          format: uuid
-        country:
-          type: string
-        city:
-          type: string
-        active:
-          type: boolean
-        logo:
-          type: string
-          format: byte
-        currencyCode:
-          type: string
-    PageObject:
-      type: object
-      properties:
-        totalPages:
+        code:
           type: integer
           format: int32
-        totalElements:
-          type: integer
-          format: int64
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            type: object
-        number:
-          type: integer
-          format: int32
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        numberOfElements:
-          type: integer
-          format: int32
-        empty:
-          type: boolean
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: API Key for accessing the endpoints from types (ADMIN, PARTNER, MERCHANT, USER)
+      name: X-API-KEY
+      in: header

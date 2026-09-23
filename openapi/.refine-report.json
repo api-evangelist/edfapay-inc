@@ -1,19 +1,14 @@
 {
   "provider": "edfapay-inc",
   "sources": [
-    "edfapay-inc-branch-management-api-openapi.yml",
-    "edfapay-inc-merchant-management-api-openapi.yml",
-    "edfapay-inc-partner-management-api-openapi.yml",
-    "edfapay-inc-payment-api-openapi.yml",
-    "edfapay-inc-role-management-api-openapi.yml",
-    "edfapay-inc-transaction-management-api-openapi.yml",
-    "edfapay-inc-user-management-api-openapi.yml"
+    "_original/edfapay-inc-payment-initiate.json",
+    "_original/edfapay-inc-revamp.json"
   ],
   "outputs": [
+    "edfapay-inc-payment-api-openapi.yml",
     "edfapay-inc-branch-management-api-openapi.yml",
     "edfapay-inc-merchant-management-api-openapi.yml",
     "edfapay-inc-partner-management-api-openapi.yml",
-    "edfapay-inc-payment-api-openapi.yml",
     "edfapay-inc-role-management-api-openapi.yml",
     "edfapay-inc-transaction-management-api-openapi.yml",
     "edfapay-inc-user-management-api-openapi.yml"
@@ -21,6 +16,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "edfapay-inc-payment-initiate.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "edfapay-inc-payment-initiate.json: tagged paths POST /payment/initiate -> Payment",
+    "edfapay-inc-payment-initiate.json: declared missing tag: Payment",
+    "edfapay-inc-revamp.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "edfapay-inc-branch-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edfapay-inc-merchant-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edfapay-inc-partner-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edfapay-inc-payment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edfapay-inc-role-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edfapay-inc-transaction-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edfapay-inc-user-management-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

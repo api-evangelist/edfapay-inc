@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Edfapay Gateway Branch Management Payment API
+  title: Edfapay Gateway Payment API
   version: 1.0.0
   description: API to initiate a payment with Edfapay.
 servers:
@@ -107,3 +107,5 @@ paths:
                   error_message: Invalid Client Key / Edfa Merchant ID
       tags:
       - Payment
+      operationId: postPaymentInitiate
+      x-operation-id-source: derived

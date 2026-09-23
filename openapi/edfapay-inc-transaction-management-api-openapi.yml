@@ -1,11 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Edfapay Payment Gateway Branch Management Transaction Management API
-  version: 1.0.0
-  description: API to initiate a payment with Edfapay.
+  title: Edfapay API Docs Transaction Management API
+  version: '1.0'
+  description: Transaction Management APIs
 servers:
-- url: https://apidev.edfapay.com
-  description: Sandbox server
+- url: https://revamp-api.edfapay.com
+  description: Staging Server
+- url: http://localhost:8766
+  description: Local Server
+security:
+- apiKey: []
 tags:
 - name: Transaction Management
   description: Transaction Management APIs
@@ -239,79 +243,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
-    PageableObject:
-      type: object
-      properties:
-        paged:
-          type: boolean
-        pageNumber:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int64
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        unpaged:
-          type: boolean
-    ApiResponseObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
-    SortObject:
-      type: object
-      properties:
-        direction:
-          type: string
-        nullHandling:
-          type: string
-        ascending:
-          type: boolean
-        property:
-          type: string
-        ignoreCase:
-          type: boolean
-    ApiResponsePageObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          $ref: '#/components/schemas/PageObject'
-    FinancialTransactionPage:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          format: int32
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        pageSize:
-          type: integer
-          format: int32
-        sortBy:
-          type: string
     FinancialTransactionSearchCriteria:
       type: object
       properties:
@@ -378,6 +309,26 @@ components:
             format: uuid
         appId:
           type: string
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
     PageObject:
       type: object
       properties:
@@ -412,3 +363,62 @@ components:
           format: int32
         empty:
           type: boolean
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    FinancialTransactionPage:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
+          type: string
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: API Key for accessing the endpoints from types (ADMIN, PARTNER, MERCHANT, USER)
+      name: X-API-KEY
+      in: header

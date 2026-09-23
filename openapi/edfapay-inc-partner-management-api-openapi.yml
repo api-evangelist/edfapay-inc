@@ -1,11 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Edfapay Payment Gateway Branch Management Partner Management API
-  version: 1.0.0
-  description: API to initiate a payment with Edfapay.
+  title: Edfapay API Docs Partner Management API
+  version: '1.0'
+  description: Partner Management APIs
 servers:
-- url: https://apidev.edfapay.com
-  description: Sandbox server
+- url: https://revamp-api.edfapay.com
+  description: Staging Server
+- url: http://localhost:8766
+  description: Local Server
+security:
+- apiKey: []
 tags:
 - name: Partner Management
   description: Partner Management APIs
@@ -184,6 +188,33 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
+    CreatePartnerRequest:
+      required:
+      - emailAddress
+      - name
+      - nameAR
+      - registeredMobileNumber
+      type: object
+      properties:
+        parentBusinessUnitId:
+          type: string
+          format: uuid
+        logo:
+          type: string
+          format: byte
+        name:
+          type: string
+        nameAR:
+          type: string
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          pattern: ^\+?[0-9]{10,15}$
+          type: string
+        address:
+          type: string
+        active:
+          type: boolean
     PageableObject:
       type: object
       properties:
@@ -204,30 +235,39 @@ components:
             $ref: '#/components/schemas/SortObject'
         unpaged:
           type: boolean
-    ApiResponseObject:
+    PageObject:
       type: object
       properties:
-        code:
+        totalPages:
           type: integer
           format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
-    SortObject:
-      type: object
-      properties:
-        direction:
-          type: string
-        nullHandling:
-          type: string
-        ascending:
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
           type: boolean
-        property:
-          type: string
-        ignoreCase:
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
           type: boolean
     SearchPageable:
       type: object
@@ -273,32 +313,18 @@ components:
           items:
             type: string
             format: uuid
-    CreatePartnerRequest:
-      required:
-      - emailAddress
-      - name
-      - nameAR
-      - registeredMobileNumber
+    SortObject:
       type: object
       properties:
-        parentBusinessUnitId:
+        direction:
           type: string
-          format: uuid
-        logo:
+        nullHandling:
           type: string
-          format: byte
-        name:
+        ascending:
+          type: boolean
+        property:
           type: string
-        nameAR:
-          type: string
-        emailAddress:
-          type: string
-        registeredMobileNumber:
-          pattern: ^\+?[0-9]{10,15}$
-          type: string
-        address:
-          type: string
-        active:
+        ignoreCase:
           type: boolean
     ApiResponsePageObject:
       type: object
@@ -312,6 +338,18 @@ components:
           type: string
         data:
           $ref: '#/components/schemas/PageObject'
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
     UpdatePartnerRequest:
       required:
       - address
@@ -340,37 +378,9 @@ components:
           type: string
         active:
           type: boolean
-    PageObject:
-      type: object
-      properties:
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            type: object
-        number:
-          type: integer
-          format: int32
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        numberOfElements:
-          type: integer
-          format: int32
-        empty:
-          type: boolean
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      description: API Key for accessing the endpoints from types (ADMIN, PARTNER, MERCHANT, USER)
+      name: X-API-KEY
+      in: header
