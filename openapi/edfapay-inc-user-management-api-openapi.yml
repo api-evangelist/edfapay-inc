@@ -163,25 +163,126 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
-    PageableObject:
+    ApiResponsePageObject:
       type: object
       properties:
-        paged:
-          type: boolean
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    SearchPageable:
+      type: object
+      properties:
         pageNumber:
           type: integer
           format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
         pageSize:
           type: integer
           format: int32
-        offset:
-          type: integer
-          format: int64
-        sort:
+        sortBy:
+          type: string
+    UserSearchCriteria:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        phoneNumber:
+          type: string
+        createdTimeTo:
+          type: string
+          format: date
+        createdTimeFrom:
+          type: string
+          format: date
+        firstName:
+          type: string
+        lastName:
+          type: string
+        businessUnitId:
+          type: string
+          format: uuid
+        userType:
+          type: string
+        text:
+          type: string
+        owner:
+          type: boolean
+        businessUnitHierarchies:
           type: array
           items:
-            $ref: '#/components/schemas/SortObject'
-        unpaged:
+            type: string
+            format: uuid
+    UpdateUserRequest:
+      required:
+      - id
+      - userType
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phoneNumber:
+          pattern: ^(\+?[0-9]{10,15}|)$
+          type: string
+        userType:
+          type: string
+          enum:
+          - SUPER_ADMIN
+          - PARTNER
+          - MERCHANT
+          - BRANCH
+          - TERMINAL
+          - SDK_USER
+          - USER
+        roles:
+          type: array
+          items:
+            type: string
+        permissions:
+          type: array
+          items:
+            type: string
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
           type: boolean
     PageObject:
       type: object
@@ -217,127 +318,26 @@ components:
           format: int32
         empty:
           type: boolean
-    SearchPageable:
+    PageableObject:
       type: object
       properties:
+        paged:
+          type: boolean
         pageNumber:
           type: integer
           format: int32
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
         pageSize:
           type: integer
           format: int32
-        sortBy:
-          type: string
-    SortObject:
-      type: object
-      properties:
-        direction:
-          type: string
-        nullHandling:
-          type: string
-        ascending:
-          type: boolean
-        property:
-          type: string
-        ignoreCase:
-          type: boolean
-    UserSearchCriteria:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        username:
-          type: string
-        phoneNumber:
-          type: string
-        createdTimeTo:
-          type: string
-          format: date
-        createdTimeFrom:
-          type: string
-          format: date
-        firstName:
-          type: string
-        lastName:
-          type: string
-        businessUnitId:
-          type: string
-          format: uuid
-        userType:
-          type: string
-        text:
-          type: string
-        owner:
-          type: boolean
-        businessUnitHierarchies:
-          type: array
-          items:
-            type: string
-            format: uuid
-    ApiResponsePageObject:
-      type: object
-      properties:
-        code:
+        offset:
           type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          $ref: '#/components/schemas/PageObject'
-    ApiResponseObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
-    UpdateUserRequest:
-      required:
-      - id
-      - userType
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        firstName:
-          type: string
-        lastName:
-          type: string
-        phoneNumber:
-          pattern: ^(\+?[0-9]{10,15}|)$
-          type: string
-        userType:
-          type: string
-          enum:
-          - SUPER_ADMIN
-          - PARTNER
-          - MERCHANT
-          - BRANCH
-          - TERMINAL
-          - SDK_USER
-          - USER
-        roles:
+          format: int64
+        sort:
           type: array
           items:
-            type: string
-        permissions:
-          type: array
-          items:
-            type: string
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
   securitySchemes:
     apiKey:
       type: apiKey

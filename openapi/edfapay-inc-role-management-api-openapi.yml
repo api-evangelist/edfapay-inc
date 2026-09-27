@@ -195,6 +195,58 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    SearchPageable:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
+          type: string
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+    RoleCreateRequest:
+      type: object
+      properties:
+        roleName:
+          type: string
+        description:
+          type: string
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
     RoleSearchCriteria:
       type: object
       properties:
@@ -206,25 +258,18 @@ components:
         createdTimeFrom:
           type: string
           format: date
-    PageableObject:
+    SortObject:
       type: object
       properties:
-        paged:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
           type: boolean
-        pageNumber:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int64
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        unpaged:
+        property:
+          type: string
+        ignoreCase:
           type: boolean
     PageObject:
       type: object
@@ -260,71 +305,26 @@ components:
           format: int32
         empty:
           type: boolean
-    SearchPageable:
+    PageableObject:
       type: object
       properties:
+        paged:
+          type: boolean
         pageNumber:
           type: integer
           format: int32
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
         pageSize:
           type: integer
           format: int32
-        sortBy:
-          type: string
-    SortObject:
-      type: object
-      properties:
-        direction:
-          type: string
-        nullHandling:
-          type: string
-        ascending:
-          type: boolean
-        property:
-          type: string
-        ignoreCase:
-          type: boolean
-    RoleCreateRequest:
-      type: object
-      properties:
-        roleName:
-          type: string
-        description:
-          type: string
-        permissions:
-          uniqueItems: true
+        offset:
+          type: integer
+          format: int64
+        sort:
           type: array
           items:
-            type: string
-    ApiResponsePageObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          $ref: '#/components/schemas/PageObject'
-    ApiResponseObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
   securitySchemes:
     apiKey:
       type: apiKey

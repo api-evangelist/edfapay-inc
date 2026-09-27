@@ -187,6 +187,34 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    SearchPageable:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
+          type: string
     BranchCreateRequest:
       required:
       - countryCode
@@ -209,26 +237,78 @@ components:
         parentBusinessUnitId:
           type: string
           format: uuid
-    PageableObject:
+    ApiResponseObject:
       type: object
       properties:
-        paged:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
           type: boolean
-        pageNumber:
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    BranchUpdateRequest:
+      required:
+      - countryCode
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        nameAR:
+          type: string
+        address:
+          type: string
+        countryCode:
+          type: string
+        cityId:
           type: integer
           format: int32
-        pageSize:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int64
-        sort:
+        active:
+          type: boolean
+    BranchSearchCriteria:
+      type: object
+      properties:
+        text:
+          type: string
+        countryCode:
+          type: string
+        cityId:
+          type: string
+        address:
+          type: string
+        active:
+          type: boolean
+        createdTimeTo:
+          type: string
+          format: date
+        createdTimeFrom:
+          type: string
+          format: date
+        businessUnitHierarchies:
           type: array
           items:
-            $ref: '#/components/schemas/SortObject'
-        unpaged:
-          type: boolean
+            type: string
+            format: uuid
     PageObject:
       type: object
       properties:
@@ -263,106 +343,26 @@ components:
           format: int32
         empty:
           type: boolean
-    BranchUpdateRequest:
-      required:
-      - countryCode
-      - id
-      - name
+    PageableObject:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        nameAR:
-          type: string
-        address:
-          type: string
-        countryCode:
-          type: string
-        cityId:
-          type: integer
-          format: int32
-        active:
+        paged:
           type: boolean
-    SearchPageable:
-      type: object
-      properties:
         pageNumber:
           type: integer
           format: int32
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
         pageSize:
           type: integer
           format: int32
-        sortBy:
-          type: string
-    BranchSearchCriteria:
-      type: object
-      properties:
-        text:
-          type: string
-        countryCode:
-          type: string
-        cityId:
-          type: string
-        address:
-          type: string
-        active:
-          type: boolean
-        createdTimeTo:
-          type: string
-          format: date
-        createdTimeFrom:
-          type: string
-          format: date
-        businessUnitHierarchies:
+        offset:
+          type: integer
+          format: int64
+        sort:
           type: array
           items:
-            type: string
-            format: uuid
-    SortObject:
-      type: object
-      properties:
-        direction:
-          type: string
-        nullHandling:
-          type: string
-        ascending:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
           type: boolean
-        property:
-          type: string
-        ignoreCase:
-          type: boolean
-    ApiResponsePageObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          $ref: '#/components/schemas/PageObject'
-    ApiResponseObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
   securitySchemes:
     apiKey:
       type: apiKey

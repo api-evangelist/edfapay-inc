@@ -188,76 +188,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
-    PageableObject:
-      type: object
-      properties:
-        paged:
-          type: boolean
-        pageNumber:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int64
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        unpaged:
-          type: boolean
-    PageObject:
-      type: object
-      properties:
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            type: object
-        number:
-          type: integer
-          format: int32
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        numberOfElements:
-          type: integer
-          format: int32
-        empty:
-          type: boolean
-    SearchPageable:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          format: int32
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        pageSize:
-          type: integer
-          format: int32
-        sortBy:
-          type: string
     UpdateMerchantRequest:
       type: object
       properties:
@@ -286,53 +216,46 @@ components:
           format: byte
         currencyCode:
           type: string
-    SortObject:
+    ApiResponsePageObject:
       type: object
       properties:
-        direction:
+        code:
+          type: integer
+          format: int32
+        message:
           type: string
-        nullHandling:
+        errorCode:
           type: string
-        ascending:
-          type: boolean
-        property:
-          type: string
-        ignoreCase:
-          type: boolean
-    CreateMerchantRequest:
-      required:
-      - emailAddress
-      - name
-      - nameAR
-      - registeredMobileNumber
+        data:
+          $ref: '#/components/schemas/PageObject'
+    SearchPageable:
       type: object
       properties:
-        emailAddress:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
           type: string
-        registeredMobileNumber:
-          pattern: ^\+?[0-9]{10,15}$
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
           type: string
-        country:
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
           type: string
-        city:
+        errorCode:
           type: string
-        parentBusinessUnitId:
-          type: string
-          format: uuid
-        businessCategoryId:
-          type: string
-          format: uuid
-        logo:
-          type: string
-          format: byte
-        currencyCode:
-          type: string
-        name:
-          type: string
-        nameAR:
-          type: string
-        active:
-          type: boolean
+        data:
+          type: object
     MerchantSearchCriteria:
       type: object
       properties:
@@ -375,30 +298,107 @@ components:
           items:
             type: string
             format: uuid
-    ApiResponsePageObject:
+    CreateMerchantRequest:
+      required:
+      - emailAddress
+      - name
+      - nameAR
+      - registeredMobileNumber
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        emailAddress:
           type: string
-        errorCode:
+        registeredMobileNumber:
+          pattern: ^\+?[0-9]{10,15}$
           type: string
-        data:
-          $ref: '#/components/schemas/PageObject'
-    ApiResponseObject:
+        country:
+          type: string
+        city:
+          type: string
+        parentBusinessUnitId:
+          type: string
+          format: uuid
+        businessCategoryId:
+          type: string
+          format: uuid
+        logo:
+          type: string
+          format: byte
+        currencyCode:
+          type: string
+        name:
+          type: string
+        nameAR:
+          type: string
+        active:
+          type: boolean
+    SortObject:
       type: object
       properties:
-        code:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    PageObject:
+      type: object
+      properties:
+        totalPages:
           type: integer
           format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
   securitySchemes:
     apiKey:
       type: apiKey

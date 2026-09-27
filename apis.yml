@@ -1,5 +1,5 @@
 aid: edfapay-inc
-name: EdfaPay, Inc.
+name: EdfaPay
 description: >-
   EdfaPay is a Saudi fintech and payment-technology company offering a
   developer-friendly payment platform across the GCC region. Its products include
@@ -206,3 +206,4 @@ x-enrichment:
   status: backfilled
   pass: local-v1
   note: backfilled from .gitignore signal + verified work evidence
+x-legal-name: EdfaPay, Inc.
