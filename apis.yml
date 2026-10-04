@@ -48,6 +48,9 @@ x-tier-reason: portfolio-lead
 specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
 - Company
 - Payments
@@ -57,6 +60,7 @@ tags:
 - Apple Pay
 - Saudi Arabia
 - Merchant Onboarding
+- MENA
 apis:
 - aid: edfapay-inc:edfapay-inc-branch-management-api
   name: EdfaPay, Inc. Branch Management API
@@ -136,6 +140,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/edfapay-inc-capability-edges.yml
+  name: EdfaPay Business Capability Map
 - type: Overlay
   url: overlays/edfapay-inc-revamp-overlay.yaml
 - type: Website
