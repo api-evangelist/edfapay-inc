@@ -188,6 +188,33 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
+    CreatePartnerRequest:
+      required:
+      - emailAddress
+      - name
+      - nameAR
+      - registeredMobileNumber
+      type: object
+      properties:
+        parentBusinessUnitId:
+          type: string
+          format: uuid
+        logo:
+          type: string
+          format: byte
+        name:
+          type: string
+        nameAR:
+          type: string
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          pattern: ^\+?[0-9]{10,15}$
+          type: string
+        address:
+          type: string
+        active:
+          type: boolean
     PageableObject:
       type: object
       properties:
@@ -208,30 +235,6 @@ components:
             $ref: '#/components/schemas/SortObject'
         unpaged:
           type: boolean
-    ApiResponseObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
-    ApiResponsePageObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          $ref: '#/components/schemas/PageObject'
     SortObject:
       type: object
       properties:
@@ -245,6 +248,46 @@ components:
           type: string
         ignoreCase:
           type: boolean
+    PartnerSearchCriteria:
+      type: object
+      properties:
+        name:
+          type: string
+        nameAR:
+          type: string
+        address:
+          type: string
+        text:
+          type: string
+        active:
+          type: boolean
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          type: string
+        createdTimeTo:
+          type: string
+          format: date
+        createdTimeFrom:
+          type: string
+          format: date
+        businessUnitHierarchies:
+          type: array
+          items:
+            type: string
+            format: uuid
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
     UpdatePartnerRequest:
       required:
       - address
@@ -307,61 +350,6 @@ components:
           format: int32
         empty:
           type: boolean
-    PartnerSearchCriteria:
-      type: object
-      properties:
-        name:
-          type: string
-        nameAR:
-          type: string
-        address:
-          type: string
-        text:
-          type: string
-        active:
-          type: boolean
-        emailAddress:
-          type: string
-        registeredMobileNumber:
-          type: string
-        createdTimeTo:
-          type: string
-          format: date
-        createdTimeFrom:
-          type: string
-          format: date
-        businessUnitHierarchies:
-          type: array
-          items:
-            type: string
-            format: uuid
-    CreatePartnerRequest:
-      required:
-      - emailAddress
-      - name
-      - nameAR
-      - registeredMobileNumber
-      type: object
-      properties:
-        parentBusinessUnitId:
-          type: string
-          format: uuid
-        logo:
-          type: string
-          format: byte
-        name:
-          type: string
-        nameAR:
-          type: string
-        emailAddress:
-          type: string
-        registeredMobileNumber:
-          pattern: ^\+?[0-9]{10,15}$
-          type: string
-        address:
-          type: string
-        active:
-          type: boolean
     SearchPageable:
       type: object
       properties:
@@ -378,6 +366,18 @@ components:
           format: int32
         sortBy:
           type: string
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
   securitySchemes:
     apiKey:
       type: apiKey

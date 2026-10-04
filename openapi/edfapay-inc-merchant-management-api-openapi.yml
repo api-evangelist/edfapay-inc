@@ -188,6 +188,40 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
+    PageObject:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
     PageableObject:
       type: object
       properties:
@@ -208,18 +242,53 @@ components:
             $ref: '#/components/schemas/SortObject'
         unpaged:
           type: boolean
-    ApiResponseObject:
+    SortObject:
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        direction:
           type: string
-        errorCode:
+        nullHandling:
           type: string
-        data:
-          type: object
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    CreateMerchantRequest:
+      required:
+      - emailAddress
+      - name
+      - nameAR
+      - registeredMobileNumber
+      type: object
+      properties:
+        emailAddress:
+          type: string
+        registeredMobileNumber:
+          pattern: ^\+?[0-9]{10,15}$
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        parentBusinessUnitId:
+          type: string
+          format: uuid
+        businessCategoryId:
+          type: string
+          format: uuid
+        logo:
+          type: string
+          format: byte
+        currencyCode:
+          type: string
+        name:
+          type: string
+        nameAR:
+          type: string
+        active:
+          type: boolean
     MerchantSearchCriteria:
       type: object
       properties:
@@ -274,19 +343,6 @@ components:
           type: string
         data:
           $ref: '#/components/schemas/PageObject'
-    SortObject:
-      type: object
-      properties:
-        direction:
-          type: string
-        nullHandling:
-          type: string
-        ascending:
-          type: boolean
-        property:
-          type: string
-        ignoreCase:
-          type: boolean
     UpdateMerchantRequest:
       type: object
       properties:
@@ -315,40 +371,6 @@ components:
           format: byte
         currencyCode:
           type: string
-    PageObject:
-      type: object
-      properties:
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            type: object
-        number:
-          type: integer
-          format: int32
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        numberOfElements:
-          type: integer
-          format: int32
-        empty:
-          type: boolean
     SearchPageable:
       type: object
       properties:
@@ -365,40 +387,18 @@ components:
           format: int32
         sortBy:
           type: string
-    CreateMerchantRequest:
-      required:
-      - emailAddress
-      - name
-      - nameAR
-      - registeredMobileNumber
+    ApiResponseObject:
       type: object
       properties:
-        emailAddress:
+        code:
+          type: integer
+          format: int32
+        message:
           type: string
-        registeredMobileNumber:
-          pattern: ^\+?[0-9]{10,15}$
+        errorCode:
           type: string
-        country:
-          type: string
-        city:
-          type: string
-        parentBusinessUnitId:
-          type: string
-          format: uuid
-        businessCategoryId:
-          type: string
-          format: uuid
-        logo:
-          type: string
-          format: byte
-        currencyCode:
-          type: string
-        name:
-          type: string
-        nameAR:
-          type: string
-        active:
-          type: boolean
+        data:
+          type: object
   securitySchemes:
     apiKey:
       type: apiKey

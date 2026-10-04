@@ -217,18 +217,6 @@ components:
           items:
             type: string
             format: uuid
-    ApiResponseObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
     SortObject:
       type: object
       properties:
@@ -338,6 +326,18 @@ components:
           format: int32
         sortBy:
           type: string
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
   securitySchemes:
     apiKey:
       type: apiKey

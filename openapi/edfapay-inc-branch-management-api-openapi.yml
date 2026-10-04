@@ -187,6 +187,29 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
+    BranchUpdateRequest:
+      required:
+      - countryCode
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        nameAR:
+          type: string
+        address:
+          type: string
+        countryCode:
+          type: string
+        cityId:
+          type: integer
+          format: int32
+        active:
+          type: boolean
     PageableObject:
       type: object
       properties:
@@ -207,30 +230,19 @@ components:
             $ref: '#/components/schemas/SortObject'
         unpaged:
           type: boolean
-    ApiResponseObject:
+    SortObject:
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        direction:
           type: string
-        errorCode:
+        nullHandling:
           type: string
-        data:
-          type: object
-    ApiResponsePageObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        ascending:
+          type: boolean
+        property:
           type: string
-        errorCode:
-          type: string
-        data:
-          $ref: '#/components/schemas/PageObject'
+        ignoreCase:
+          type: boolean
     BranchSearchCriteria:
       type: object
       properties:
@@ -255,19 +267,6 @@ components:
           items:
             type: string
             format: uuid
-    SortObject:
-      type: object
-      properties:
-        direction:
-          type: string
-        nullHandling:
-          type: string
-        ascending:
-          type: boolean
-        property:
-          type: string
-        ignoreCase:
-          type: boolean
     BranchCreateRequest:
       required:
       - countryCode
@@ -290,6 +289,18 @@ components:
         parentBusinessUnitId:
           type: string
           format: uuid
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
     PageObject:
       type: object
       properties:
@@ -324,29 +335,6 @@ components:
           format: int32
         empty:
           type: boolean
-    BranchUpdateRequest:
-      required:
-      - countryCode
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        nameAR:
-          type: string
-        address:
-          type: string
-        countryCode:
-          type: string
-        cityId:
-          type: integer
-          format: int32
-        active:
-          type: boolean
     SearchPageable:
       type: object
       properties:
@@ -363,6 +351,18 @@ components:
           format: int32
         sortBy:
           type: string
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
   securitySchemes:
     apiKey:
       type: apiKey

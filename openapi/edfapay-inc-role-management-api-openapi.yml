@@ -195,18 +195,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
-    RoleCreateRequest:
-      type: object
-      properties:
-        roleName:
-          type: string
-        description:
-          type: string
-        permissions:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
     PageableObject:
       type: object
       properties:
@@ -227,18 +215,17 @@ components:
             $ref: '#/components/schemas/SortObject'
         unpaged:
           type: boolean
-    ApiResponseObject:
+    RoleSearchCriteria:
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        text:
           type: string
-        errorCode:
+        createdTimeTo:
           type: string
-        data:
-          type: object
+          format: date
+        createdTimeFrom:
+          type: string
+          format: date
     SortObject:
       type: object
       properties:
@@ -252,6 +239,18 @@ components:
           type: string
         ignoreCase:
           type: boolean
+    RoleCreateRequest:
+      type: object
+      properties:
+        roleName:
+          type: string
+        description:
+          type: string
+        permissions:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
     ApiResponsePageObject:
       type: object
       properties:
@@ -298,17 +297,6 @@ components:
           format: int32
         empty:
           type: boolean
-    RoleSearchCriteria:
-      type: object
-      properties:
-        text:
-          type: string
-        createdTimeTo:
-          type: string
-          format: date
-        createdTimeFrom:
-          type: string
-          format: date
     SearchPageable:
       type: object
       properties:
@@ -325,6 +313,18 @@ components:
           format: int32
         sortBy:
           type: string
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
   securitySchemes:
     apiKey:
       type: apiKey
