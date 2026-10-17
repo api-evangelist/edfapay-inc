@@ -187,6 +187,18 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
+    ApiResponseObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
     BranchUpdateRequest:
       required:
       - countryCode
@@ -210,26 +222,22 @@ components:
           format: int32
         active:
           type: boolean
-    PageableObject:
+    SearchPageable:
       type: object
       properties:
-        paged:
-          type: boolean
         pageNumber:
           type: integer
           format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
         pageSize:
           type: integer
           format: int32
-        offset:
-          type: integer
-          format: int64
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        unpaged:
-          type: boolean
+        sortBy:
+          type: string
     SortObject:
       type: object
       properties:
@@ -243,30 +251,6 @@ components:
           type: string
         ignoreCase:
           type: boolean
-    BranchSearchCriteria:
-      type: object
-      properties:
-        text:
-          type: string
-        countryCode:
-          type: string
-        cityId:
-          type: string
-        address:
-          type: string
-        active:
-          type: boolean
-        createdTimeTo:
-          type: string
-          format: date
-        createdTimeFrom:
-          type: string
-          format: date
-        businessUnitHierarchies:
-          type: array
-          items:
-            type: string
-            format: uuid
     BranchCreateRequest:
       required:
       - countryCode
@@ -301,6 +285,50 @@ components:
           type: string
         data:
           $ref: '#/components/schemas/PageObject'
+    BranchSearchCriteria:
+      type: object
+      properties:
+        text:
+          type: string
+        countryCode:
+          type: string
+        cityId:
+          type: string
+        address:
+          type: string
+        active:
+          type: boolean
+        createdTimeTo:
+          type: string
+          format: date
+        createdTimeFrom:
+          type: string
+          format: date
+        businessUnitHierarchies:
+          type: array
+          items:
+            type: string
+            format: uuid
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
     PageObject:
       type: object
       properties:
@@ -335,34 +363,6 @@ components:
           format: int32
         empty:
           type: boolean
-    SearchPageable:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          format: int32
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        pageSize:
-          type: integer
-          format: int32
-        sortBy:
-          type: string
-    ApiResponseObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
   securitySchemes:
     apiKey:
       type: apiKey

@@ -163,26 +163,18 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
-    PageableObject:
+    ApiResponseObject:
       type: object
       properties:
-        paged:
-          type: boolean
-        pageNumber:
+        code:
           type: integer
           format: int32
-        pageSize:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int64
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        unpaged:
-          type: boolean
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          type: object
     UserSearchCriteria:
       type: object
       properties:
@@ -217,31 +209,6 @@ components:
           items:
             type: string
             format: uuid
-    SortObject:
-      type: object
-      properties:
-        direction:
-          type: string
-        nullHandling:
-          type: string
-        ascending:
-          type: boolean
-        property:
-          type: string
-        ignoreCase:
-          type: boolean
-    ApiResponsePageObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          $ref: '#/components/schemas/PageObject'
     UpdateUserRequest:
       required:
       - id
@@ -276,6 +243,67 @@ components:
           type: array
           items:
             type: string
+    SearchPageable:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        pageSize:
+          type: integer
+          format: int32
+        sortBy:
+          type: string
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    ApiResponsePageObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        errorCode:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageObject'
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
     PageObject:
       type: object
       properties:
@@ -310,34 +338,6 @@ components:
           format: int32
         empty:
           type: boolean
-    SearchPageable:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          format: int32
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        pageSize:
-          type: integer
-          format: int32
-        sortBy:
-          type: string
-    ApiResponseObject:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        errorCode:
-          type: string
-        data:
-          type: object
   securitySchemes:
     apiKey:
       type: apiKey

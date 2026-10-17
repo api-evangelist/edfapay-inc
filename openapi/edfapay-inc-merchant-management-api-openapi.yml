@@ -188,107 +188,18 @@ paths:
                 $ref: '#/components/schemas/ApiResponseObject'
 components:
   schemas:
-    PageObject:
+    ApiResponseObject:
       type: object
       properties:
-        totalPages:
+        code:
           type: integer
           format: int32
-        totalElements:
-          type: integer
-          format: int64
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            type: object
-        number:
-          type: integer
-          format: int32
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        numberOfElements:
-          type: integer
-          format: int32
-        empty:
-          type: boolean
-    PageableObject:
-      type: object
-      properties:
-        paged:
-          type: boolean
-        pageNumber:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int64
-        sort:
-          type: array
-          items:
-            $ref: '#/components/schemas/SortObject'
-        unpaged:
-          type: boolean
-    SortObject:
-      type: object
-      properties:
-        direction:
+        message:
           type: string
-        nullHandling:
+        errorCode:
           type: string
-        ascending:
-          type: boolean
-        property:
-          type: string
-        ignoreCase:
-          type: boolean
-    CreateMerchantRequest:
-      required:
-      - emailAddress
-      - name
-      - nameAR
-      - registeredMobileNumber
-      type: object
-      properties:
-        emailAddress:
-          type: string
-        registeredMobileNumber:
-          pattern: ^\+?[0-9]{10,15}$
-          type: string
-        country:
-          type: string
-        city:
-          type: string
-        parentBusinessUnitId:
-          type: string
-          format: uuid
-        businessCategoryId:
-          type: string
-          format: uuid
-        logo:
-          type: string
-          format: byte
-        currencyCode:
-          type: string
-        name:
-          type: string
-        nameAR:
-          type: string
-        active:
-          type: boolean
+        data:
+          type: object
     MerchantSearchCriteria:
       type: object
       properties:
@@ -331,18 +242,40 @@ components:
           items:
             type: string
             format: uuid
-    ApiResponsePageObject:
+    CreateMerchantRequest:
+      required:
+      - emailAddress
+      - name
+      - nameAR
+      - registeredMobileNumber
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        emailAddress:
           type: string
-        errorCode:
+        registeredMobileNumber:
+          pattern: ^\+?[0-9]{10,15}$
           type: string
-        data:
-          $ref: '#/components/schemas/PageObject'
+        country:
+          type: string
+        city:
+          type: string
+        parentBusinessUnitId:
+          type: string
+          format: uuid
+        businessCategoryId:
+          type: string
+          format: uuid
+        logo:
+          type: string
+          format: byte
+        currencyCode:
+          type: string
+        name:
+          type: string
+        nameAR:
+          type: string
+        active:
+          type: boolean
     UpdateMerchantRequest:
       type: object
       properties:
@@ -387,7 +320,20 @@ components:
           format: int32
         sortBy:
           type: string
-    ApiResponseObject:
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    ApiResponsePageObject:
       type: object
       properties:
         code:
@@ -398,7 +344,61 @@ components:
         errorCode:
           type: string
         data:
-          type: object
+          $ref: '#/components/schemas/PageObject'
+    PageableObject:
+      type: object
+      properties:
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
+    PageObject:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            type: object
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
   securitySchemes:
     apiKey:
       type: apiKey
