@@ -65,6 +65,72 @@ edges:
     year: '2022'
   detected_by: sweep-accelerator-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: pub.dev
+  partner: pub-dev
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Dart/Flutter)
+  evidence: https://pub.dev/packages/edfapay_pg_plugin
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: pub.dev (public registry JSON)
+    spec_file: null
+    language: Dart/Flutter
+    packages:
+    - name: edfapay_pg_plugin
+      version: 1.0.0-beta.3
+      released: '2026-10-11'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/edfapay_pg_plugin
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:edfapay.com
+      matched_by: domain
+    - name: edfapay_softpos_sdk
+      version: 1.0.8
+      released: '2026-08-04'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/edfapay_softpos_sdk
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:edfapay.com
+      matched_by: domain
+    - name: edfapg_sdk
+      version: 2.0.11+2
+      released: '2026-04-07'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/edfapg_sdk
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:edfapay.com
+      matched_by: domain
+    - name: flutter_edfapay_softpos_sdk
+      version: 3.1.0
+      released: '2025-03-18'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/flutter_edfapay_softpos_sdk
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:edfapay.com
+      matched_by: domain
+    - name: flutter_edfapay_softpos_sdk_tn_wepay
+      version: 1.0.0-beta.3
+      released: '2026-10-14'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/flutter_edfapay_softpos_sdk_tn_wepay
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:edfapay.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
 generated: '2026-10-18'
 method: searched
 source:
@@ -88,3 +154,6 @@ checked:
 - https://www.antler.co/portfolio
 - https://www.techstars.com/portfolio
 - https://www.ycombinator.com/companies
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
