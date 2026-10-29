@@ -1,4 +1,4 @@
-# EdfaPay, Inc.
+# EdfaPay
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,6 +64,132 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-EdfaPay, Inc. is a company surfaced as a portfolio company of 500-global and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+EdfaPay is a Saudi fintech and payment-technology company offering a developer-friendly payment platform across the GCC region. Its products include a hosted Checkout and Server-to-Server (S2S) payment gateway, SoftPOS tap-to-pay technology that turns mobile devices into card readers, merchant onboarding, payouts, e-invoicing, and white-label solutions for banks and partners. The gateway supports Visa, Mastercard, MADA, Apple Pay and STC Pay with 3D Secure, webhooks, refunds and recurring payments, on PCI-DSS certified infrastructure. EdfaPay was added to the API Evangelist network as a portfolio company of 500 Global and enriched from its public developer documentation, OpenAPI definitions and SDKs.
 
-Backed by: 500-global — https://edfapay.com
+**Areas:** Company · Payments · Payment Gateway · Fintech · SoftPOS · Apple Pay · Saudi Arabia · Merchant Onboarding · MENA
+
+## EdfaPay on APIs.io
+
+Everything profiled for EdfaPay is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/edfapay-inc/](https://apis.io/providers/edfapay-inc/)** — or go straight to one of the APIs or properties below.
+
+### APIs (7)
+
+- [EdfaPay, Inc. Branch Management API](https://apis.io/apis/edfapay-inc/edfapay-inc-branch-management-api/) — Branch Management APIs
+- [EdfaPay, Inc. Merchant Management API](https://apis.io/apis/edfapay-inc/edfapay-inc-merchant-management-api/) — Merchant Management APIs
+- [EdfaPay, Inc. Partner Management API](https://apis.io/apis/edfapay-inc/edfapay-inc-partner-management-api/) — Partner Management APIs
+- [EdfaPay, Inc. Payment API](https://apis.io/apis/edfapay-inc/edfapay-inc-payment-api/) — The Payment API from EdfaPay, Inc. — 1 operation(s) for payment.
+- [EdfaPay, Inc. Role Management API](https://apis.io/apis/edfapay-inc/edfapay-inc-role-management-api/) — Role Management APIs
+- [EdfaPay, Inc. Transaction Management API](https://apis.io/apis/edfapay-inc/edfapay-inc-transaction-management-api/) — Transaction Management APIs
+- [EdfaPay, Inc. User Management API](https://apis.io/apis/edfapay-inc/edfapay-inc-user-management-api/) — User Management APIs
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Edfapay Inc Webhooks](https://apis.io/asyncapis/edfapay-inc/edfapay-inc-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [edfapay-inc-mcp.yml](https://apis.io/servers/edfapay-inc/edfapay-inc-mcp-yml/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Edfapay Payment Gateway Branch Management API](https://apis.io/collections/edfapay-inc/open-edfapay-inc-branch-management-api/)
+- [Edfapay Payment Gateway Branch Management Merchant Management API](https://apis.io/collections/edfapay-inc/open-edfapay-inc-merchant-management-api/)
+- [Edfapay Payment Gateway Branch Management Partner Management API](https://apis.io/collections/edfapay-inc/open-edfapay-inc-partner-management-api/)
+- [Edfapay Gateway Branch Management Payment API](https://apis.io/collections/edfapay-inc/open-edfapay-inc-payment-api/)
+- [Edfapay Payment Gateway Branch Management Role Management API](https://apis.io/collections/edfapay-inc/open-edfapay-inc-role-management-api/)
+- [Edfapay Payment Gateway Branch Management Transaction Management API](https://apis.io/collections/edfapay-inc/open-edfapay-inc-transaction-management-api/)
+- [Edfapay Payment Gateway Branch Management User Management API](https://apis.io/collections/edfapay-inc/open-edfapay-inc-user-management-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Edfapay Inc Revamp Overlay](https://apis.io/overlays/edfapay-inc/edfapay-inc-revamp-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Edfapay Inc Authentication](https://apis.io/security/edfapay-inc/edfapay-inc-authentication/)
+- [Edfapay Inc Domain Security](https://apis.io/security/edfapay-inc/edfapay-inc-domain-security/)
+- [Edfapay Inc Trust Center](https://apis.io/security/edfapay-inc/edfapay-inc-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://edfapay.com)
+- [Documentation](https://docs.edfapay.com)
+- [Getting started](https://docs.edfapay.com/docs/getting-started)
+- [API reference](https://docs.edfapay.com/v2.0/reference/overview)
+- [Sign up](https://app.edfapay.com/sign-up/)
+- [Support](https://edfapay.com/new-technical/)
+- [Blog](https://edfapay.com/our-blog/)
+- [Terms of service](https://edfapay.com/terms_conditions/)
+- [Privacy policy](https://edfapay.com/privacy-policy/)
+- [GitHub](https://github.com/edfapay)
+
+## API Evangelist rating
+
+**Kin Score 49.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 58.6 |
+| Contract governance | 18.2 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 43.4 |
+
+**Agent readiness 29.4** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 39.3** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/edfapay-inc/](https://apis.io/providers/edfapay-inc/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for EdfaPay: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/edfapay-inc/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
